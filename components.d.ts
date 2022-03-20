@@ -4,7 +4,10 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AppDateTime: typeof import('./src/components/AppDateTime.vue')['default']
     AppItemIcon: typeof import('./src/components/apps/AppItemIcon.vue')['default']
+    Apps: typeof import('./src/components/Apps.vue')['default']
+    AppSearch: typeof import('./src/components/AppSearch.vue')['default']
     Background: typeof import('./src/components/Background.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
   }
