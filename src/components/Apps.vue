@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-20 14:31:34
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-03-20 21:50:52
+ * @LastEditTime: 2022-03-20 22:03:44
  * @Description: Apps
 -->
 <script lang="ts" setup>
@@ -73,7 +73,7 @@ watchEffect(() => {
 <template>
   <swiper :css-mode="true" flex-1 w-full :modules="[]" @swiper="x=>swiperController = x">
     <swiper-slide v-for="item in apps" :key="item.id">
-      <div class="app-grid" max-w-1200px mx-auto grid relative justify-center grid-flow-row-dense>
+      <div class="app-grid swiper-no-swiping" max-w-1200px mx-auto grid relative justify-center grid-flow-row-dense>
         <draggable
           v-model="item.list"
           tag="transition-group"
