@@ -1,0 +1,29 @@
+<!--
+ * @Author: shaohang-shy
+ * @Date: 2022-03-11 17:55:49
+ * @LastEditors: shaohang-shy
+ * @LastEditTime: 2022-03-20 14:24:00
+ * @Description: index
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <title>导航</title>
+  <meta name="description" content="Opinionated Vite Starter Template">
+</head>
+<body class="font-sans dark:text-white dark:bg-hex-121212">
+  <div id="app"></div>
+  <script>
+    (function() {
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+      const setting = localStorage.getItem('color-schema') || 'auto'
+      if (setting === 'dark' || (prefersDark && setting !== 'light'))
+        document.documentElement.classList.toggle('dark', true)
+    })()
+  </script>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
