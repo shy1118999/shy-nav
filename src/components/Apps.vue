@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-20 14:31:34
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-03-22 23:00:58
+ * @LastEditTime: 2022-03-22 23:08:50
  * @Description: Apps
 -->
 <script lang="ts" setup>
@@ -13,8 +13,7 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import draggable from 'vuedraggable'
 import apps from '~/storage/apps'
-
-const activeIndex = useStorage('shy-nav-active-index', 0)
+import activeIndex from '~/storage/swiperActiveIndex'
 
 const swiperController = ref<SwiperController>()
 
