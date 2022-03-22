@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-20 14:31:34
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-03-22 19:44:00
+ * @LastEditTime: 2022-03-22 23:00:58
  * @Description: Apps
 -->
 <script lang="ts" setup>
@@ -14,6 +14,8 @@ import 'swiper/css/pagination'
 import draggable from 'vuedraggable'
 import apps from '~/storage/apps'
 
+const activeIndex = useStorage('shy-nav-active-index', 0)
+
 const swiperController = ref<SwiperController>()
 
 const handleToPage = (id: number) => {
@@ -21,23 +23,41 @@ const handleToPage = (id: number) => {
 }
 
 const showAppsMenu = ref(false)
-const { height } = useWindowSize()
-const { y } = useMouse()
-watchEffect(() => {
-  showAppsMenu.value = height.value - y.value <= 100
-})
+// const { height } = useWindowSize()
+// const { y } = useMouse()
+// watchEffect(() => {
+//   // showAppsMenu.value = height.value - y.value <= 100
+// })
+
 </script>
 
 <template>
-  <swiper :pagination="true" flex-1 w-full :modules="[Pagination]" @swiper="x=>swiperController = x">
+  <swiper
+    :pagination="true"
+    flex-1
+    w-full
+    :initial-slide="activeIndex"
+    :modules="[Pagination]"
+    @swiper="x => swiperController = x"
+    @slideChange="e => activeIndex = e.activeIndex"
+  >
     <swiper-slide v-for="item in apps" :key="item.id" overflow-auto>
-      <div class="app-grid" absolute max-w-1200px mx-auto grid relative justify-center grid-flow-row-dense pb-100px>
+      <div
+        class="app-grid"
+        absolute
+        max-w-1200px
+        mx-auto
+        grid
+        relative
+        justify-center
+        grid-flow-row-dense
+        pb-100px
+      >
         <draggable
-          v-model="item.list"
+          :list="item.list"
           tag="transition-group"
           item-key="id"
-          force-fallback="true"
-          group="people"
+          group="apps"
           :delay="50"
           :touch-start-threshold="5"
           animation="300"

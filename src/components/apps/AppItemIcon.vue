@@ -2,17 +2,19 @@
  * @Author: shaohang-shy
  * @Date: 2021-12-28 23:51:07
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-03-20 14:18:06
+ * @LastEditTime: 2022-03-22 22:07:18
  * @Description: AppItem
 -->
 <script lang="ts" setup>
 interface Props {
   icon: string
   url: string
+  title?: string
 }
 const props = withDefaults(defineProps<Props>(), {
   icon: 'https://files.codelife.cc/website/jd.svg',
   url: 'https://jd.com',
+  title: 'icon',
 })
 
 function handleClick() {
@@ -40,10 +42,5 @@ function handleClick() {
 <style scoped>
 .app-item-icon {
   border-radius: var(--icon-radius);
-}
-.app-item-title {
-  width: calc(100% + var(--icon-gap-y));
-  font-size: var(--icon-nameSize);
-  color: var(--icon-nameColor);
 }
 </style>

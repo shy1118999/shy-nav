@@ -8,6 +8,7 @@ declare module 'vue' {
     AppItemIcon: typeof import('./src/components/apps/AppItemIcon.vue')['default']
     Apps: typeof import('./src/components/Apps.vue')['default']
     AppSearch: typeof import('./src/components/AppSearch.vue')['default']
+    AppTab: typeof import('./src/components/AppTab.vue')['default']
     Background: typeof import('./src/components/Background.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
   }

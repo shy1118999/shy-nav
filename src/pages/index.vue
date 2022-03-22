@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-16 22:21:36
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-03-22 19:42:20
+ * @LastEditTime: 2022-03-22 23:03:27
  * @Description:index
 -->
 <script setup lang="ts">
@@ -63,5 +63,7 @@ const varStyle = {
     <AppSearch />
     <!-- apps -->
     <Apps />
+    <!-- 底部Tab -->
+    <AppTab />
   </div>
 </template>
