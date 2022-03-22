@@ -13,7 +13,6 @@ import App from './App.vue'
 import '@unocss/reset/tailwind.css'
 import './styles/main.css'
 import 'uno.css'
-import '//at.alicdn.com/t/font_3262157_52aj8gq35qk.js'
 import AppItemIcon from './components/apps/AppItemIcon.vue'
 
 const app = createApp(App)
