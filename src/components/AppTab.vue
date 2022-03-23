@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-22 23:02:12
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-03-22 23:07:14
+ * @LastEditTime: 2022-03-23 22:31:45
  * @Description:
 -->
 <script setup lang="ts">
@@ -25,6 +25,7 @@ import tabApps from '~/storage/tabApps'
         <div
           data-shy-type="tab-item"
           :data-id="element.id"
+          :data-url="element.props.url"
           relative
           :data-item="element.id"
           w-80px

@@ -2,45 +2,14 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-20 14:29:50
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-03-20 19:30:34
+ * @LastEditTime: 2022-03-23 21:29:40
  * @Description: AppSearch
 -->
 <script lang="ts" setup>
+import searchEngine from '~/storage/searchEngine'
+import currentSearchEngine from '~/storage/currentSearchEngine'
 const searchValue = ref('')
 const searchInput = ref<HTMLInputElement>()
-const searchEngine = [
-  {
-    name: 'Google',
-    url: 'https://www.google.com/search?q={$1}',
-    icon: '#icon-google',
-  },
-  {
-    name: 'Baidu',
-    url: 'https://www.baidu.com/s?wd={$1}',
-    icon: '#icon-baidu',
-  },
-  {
-    name: 'Bing',
-    url: 'https://cn.bing.com/search?q={$1}',
-    icon: '#icon-biying',
-  },
-  {
-    name: '知乎',
-    url: 'https://www.zhihu.com/search?type=content&q={$1}',
-    icon: '#icon-zhihu',
-  },
-  {
-    name: 'GitHub',
-    url: 'https://github.com/search?q={$1}',
-    icon: '#icon-GitHub',
-  },
-  {
-    name: '哔哩哔哩',
-    url: 'https://search.bilibili.com/all?keyword={$1}',
-    icon: '#icon-bilibili',
-  },
-]
-const currentSearchEngine = ref(searchEngine[0])
 const showMoreSearchEngine = ref(false)
 
 function handleClick(e: MouseEvent) {

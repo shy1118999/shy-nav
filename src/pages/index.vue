@@ -2,11 +2,13 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-16 22:21:36
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-03-22 23:03:27
+ * @LastEditTime: 2022-03-23 22:32:47
  * @Description:index
 -->
 <script setup lang="ts">
 import apps from '~/storage/apps'
+
+const menuRef = ref()
 
 function getElData(e: HTMLElement): DOMStringMap {
   if (!e.dataset.shyType)
@@ -18,24 +20,47 @@ window.oncontextmenu = (e: MouseEvent) => {
   e.preventDefault()
   e.stopPropagation()
   const data = getElData(e.target as HTMLElement)
-  if (data.shyType === 'app-item') {
-    const id = Number(data.id)
-    console.log(id)
-    let x = 0
-    let y = 0
-    for (let i = 0; i < apps.value.length; i++) {
-      for (let j = 0; j < apps.value[i].list.length; j++) {
-        if (apps.value[i].list[j].id === id) {
-          x = i
-          y = j
-          break
-        }
+  menuRef.value.open(e.pageX, e.pageY, data)
+}
+
+function handleMenuClick(x: { type: string; data: DOMStringMap }) {
+  const { type, data } = x
+  switch (type) {
+    case 'new-tab-open':
+      window.open(data.url, '_blank')
+      break
+    case 'size-big':
+    case 'size-middle':
+    case 'size-small':
+      handleChangeMenuSize(data, type)
+      break
+    case 'edit':
+      break
+    case 'delete':
+      break
+    case 'add-app':
+      break
+    case 'setting':
+      break
+  }
+}
+
+function handleChangeMenuSize(data: DOMStringMap, type: string) {
+  const id = Number(data.id)
+  let x = 0
+  let y = 0
+  for (let i = 0; i < apps.value.length; i++) {
+    for (let j = 0; j < apps.value[i].list.length; j++) {
+      if (apps.value[i].list[j].id === id) {
+        x = i
+        y = j
+        break
       }
     }
-    const item = apps.value[x].list[y]
-    item.column = 1
-    item.row = 1
   }
+  const item = apps.value[x].list[y]
+  item.column = type === 'size-big' ? 2 : type === 'size-middle' ? 1 : 1
+  item.row = type === 'size-big' ? 2 : type === 'size-middle' ? 2 : 1
 }
 
 const iconSize = 70
@@ -65,5 +90,6 @@ const varStyle = {
     <Apps />
     <!-- 底部Tab -->
     <AppTab />
+    <MenuList ref="menuRef" @menu-click="handleMenuClick" />
   </div>
 </template>

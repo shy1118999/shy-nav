@@ -11,6 +11,7 @@ declare module 'vue' {
     AppTab: typeof import('./src/components/AppTab.vue')['default']
     Background: typeof import('./src/components/Background.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
+    MenuList: typeof import('./src/components/MenuList.vue')['default']
   }
 }
 

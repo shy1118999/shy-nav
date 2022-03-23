@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-20 14:31:34
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-03-22 23:08:50
+ * @LastEditTime: 2022-03-23 22:31:04
  * @Description: Apps
 -->
 <script lang="ts" setup>
@@ -65,6 +65,7 @@ const showAppsMenu = ref(false)
             <div
               data-shy-type="app-item"
               :data-id="element.id"
+              :data-url="element.props.url"
               relative
               :data-item="element.id"
               class="app-item swiper-no-swiping"
