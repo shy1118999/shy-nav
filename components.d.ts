@@ -12,6 +12,7 @@ declare module 'vue' {
     Background: typeof import('./src/components/Background.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
     MenuList: typeof import('./src/components/MenuList.vue')['default']
+    SettingMenu: typeof import('./src/components/SettingMenu.vue')['default']
   }
 }
 

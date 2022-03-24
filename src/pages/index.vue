@@ -2,13 +2,14 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-16 22:21:36
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-03-23 22:32:47
+ * @LastEditTime: 2022-03-24 23:00:31
  * @Description:index
 -->
 <script setup lang="ts">
 import apps from '~/storage/apps'
-
+import appItemSetting from '~/storage/appItemSetting'
 const menuRef = ref()
+const showSettingMenu = ref(false)
 
 function getElData(e: HTMLElement): DOMStringMap {
   if (!e.dataset.shyType)
@@ -41,6 +42,7 @@ function handleMenuClick(x: { type: string; data: DOMStringMap }) {
     case 'add-app':
       break
     case 'setting':
+      showSettingMenu.value = true
       break
   }
 }
@@ -63,20 +65,19 @@ function handleChangeMenuSize(data: DOMStringMap, type: string) {
   item.row = type === 'size-big' ? 2 : type === 'size-middle' ? 2 : 1
 }
 
-const iconSize = 70
-const iconGapX = 35
-const iconGapY = 20
-const iconRadius = 15
-const iconNameSize = 14
-const iconNameColor = 'rgba(255,255,255,0.6)'
-const varStyle = {
-  '--icon-size': `${iconSize}px`,
-  '--icon-gap-x': `${iconGapX}px`,
-  '--icon-gap-y': `${iconGapY}px`,
-  '--icon-radius': `${iconRadius}px`,
-  '--icon-name-size': `${iconNameSize}px`,
-  '--icon-name-color': iconNameColor,
+function handleCloseSettingMenu() {
+  showSettingMenu.value = false
 }
+
+const varStyle = computed(() => ({
+  '--icon-size': `${appItemSetting.value.iconSize}px`,
+  '--icon-gap-x': `${appItemSetting.value.iconGapX}px`,
+  '--icon-gap-y': `${appItemSetting.value.iconGapY}px`,
+  '--icon-radius': `${appItemSetting.value.iconRadius}px`,
+  '--icon-name-size': `${appItemSetting.value.iconNameSize}px`,
+  '--icon-name-color': appItemSetting.value.iconNameColor,
+  '--icon-name-display': appItemSetting.value.showIconName ? 'block' : 'none',
+}))
 
 </script>
 
@@ -91,5 +92,23 @@ const varStyle = {
     <!-- 底部Tab -->
     <AppTab />
     <MenuList ref="menuRef" @menu-click="handleMenuClick" />
+    <Transition duration="550" name="nested">
+      <SettingMenu v-if="showSettingMenu" @close="handleCloseSettingMenu" />
+    </Transition>
   </div>
 </template>
+<style scoped>
+.nested-enter-active,
+.nested-leave-active {
+  transition: all 0.3s ease-in-out;
+}
+.nested-leave-active {
+  transition-delay: 0;
+}
+
+.nested-enter-from,
+.nested-leave-to {
+  transform: translateX(30px);
+  opacity: 0;
+}
+</style>

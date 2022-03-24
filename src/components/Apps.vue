@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-20 14:31:34
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-03-23 22:31:04
+ * @LastEditTime: 2022-03-24 23:00:53
  * @Description: Apps
 -->
 <script lang="ts" setup>
@@ -22,11 +22,6 @@ const handleToPage = (id: number) => {
 }
 
 const showAppsMenu = ref(false)
-// const { height } = useWindowSize()
-// const { y } = useMouse()
-// watchEffect(() => {
-//   // showAppsMenu.value = height.value - y.value <= 100
-// })
 
 </script>
 
@@ -63,9 +58,7 @@ const showAppsMenu = ref(false)
         >
           <template #item="{ element }">
             <div
-              data-shy-type="app-item"
-              :data-id="element.id"
-              :data-url="element.props.url"
+
               relative
               :data-item="element.id"
               class="app-item swiper-no-swiping"
@@ -75,7 +68,11 @@ const showAppsMenu = ref(false)
               }"
             >
               <!-- 实际组件 -->
-              <component :is="element.component" v-bind="element.props" />
+              <component
+                :is="element.component"
+                data-shy-type="app-item"
+                :data-id="element.id" :data-url="element.props.url" v-bind="element.props"
+              />
               <!-- 标题 -->
               <div class="app-item-title" truncate>
                 {{ element.title }}
@@ -169,6 +166,8 @@ const showAppsMenu = ref(false)
 }
 .app-item-title {
   color: var(--icon-name-color);
-  line-height: calc(2 * var(--icon-gap-y));
+  padding: 3px 0;
+  display: var(--icon-name-display);
+  /* line-height: calc(2 * var(--icon-gap-y)); */
 }
 </style>

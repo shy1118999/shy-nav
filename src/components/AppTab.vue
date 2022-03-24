@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-22 23:02:12
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-03-23 22:31:45
+ * @LastEditTime: 2022-03-24 23:01:09
  * @Description:
 -->
 <script setup lang="ts">
@@ -59,6 +59,8 @@ import tabApps from '~/storage/tabApps'
 }
 .app-item-title {
   color: var(--icon-name-color);
-  line-height: calc(2 * var(--icon-gap-y));
+  padding: 3px 0;
+  display: var(--icon-name-display);
+  /* line-height: calc(2 * var(--icon-gap-y)); */
 }
 </style>
