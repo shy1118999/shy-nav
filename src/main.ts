@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-11 17:55:49
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-03-20 21:00:04
+ * @LastEditTime: 2022-03-25 22:49:47
  * @Description:
  */
 import { createApp } from 'vue'
@@ -14,6 +14,7 @@ import '@unocss/reset/tailwind.css'
 import './styles/main.css'
 import 'uno.css'
 import AppItemIcon from './components/apps/AppItemIcon.vue'
+import AppFolder from './components/apps/AppFolder.vue'
 
 const app = createApp(App)
 const router = createRouter({
@@ -21,5 +22,6 @@ const router = createRouter({
   routes,
 })
 app.component('AppItemIcon', AppItemIcon)
+app.component('AppFolder', AppFolder)
 app.use(router)
 app.mount('#app')

@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-23 12:39:29
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-03-23 22:32:23
+ * @LastEditTime: 2022-03-25 23:35:02
  * @Description:
 -->
 <script setup lang="ts">
@@ -48,7 +48,12 @@ const menus: any = {
   'main': [
     { icon: '#icon-add-box', title: '添加App', emit: 'add-app' },
     { icon: '#icon-settings-applications', title: '设置', emit: 'setting' },
-
+  ],
+  'app-folder': [
+    { icon: '', title: '中', emit: 'size-middle' },
+    { icon: '', title: '小', emit: 'size-small' },
+    { icon: '#icon-create', title: '编辑', emit: 'edit' },
+    { icon: '#icon-delete', title: '删除', emit: 'delete' },
   ],
 }
 

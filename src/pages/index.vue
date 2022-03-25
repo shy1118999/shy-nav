@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-16 22:21:36
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-03-24 23:14:59
+ * @LastEditTime: 2022-03-25 23:29:01
  * @Description:index
 -->
 <script setup lang="ts">
@@ -82,7 +82,7 @@ const varStyle = computed(() => ({
 </script>
 
 <template>
-  <div data-shy-type="main" w-full h-full flex flex-col :style="varStyle">
+  <div data-shy-type="main" select-none w-full h-full flex flex-col :style="varStyle">
     <!-- 时间 -->
     <AppDateTime />
     <!-- 搜索 -->

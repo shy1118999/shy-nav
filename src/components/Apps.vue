@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-20 14:31:34
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-03-24 23:00:53
+ * @LastEditTime: 2022-03-25 22:48:06
  * @Description: Apps
 -->
 <script lang="ts" setup>
@@ -71,7 +71,9 @@ const showAppsMenu = ref(false)
               <component
                 :is="element.component"
                 data-shy-type="app-item"
-                :data-id="element.id" :data-url="element.props.url" v-bind="element.props"
+                :data-id="element.id"
+                :data-url="element.url"
+                v-bind="element"
               />
               <!-- 标题 -->
               <div class="app-item-title" truncate>
