@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-16 22:21:36
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-03-24 23:00:31
+ * @LastEditTime: 2022-03-24 23:14:59
  * @Description:index
 -->
 <script setup lang="ts">
@@ -61,8 +61,8 @@ function handleChangeMenuSize(data: DOMStringMap, type: string) {
     }
   }
   const item = apps.value[x].list[y]
-  item.column = type === 'size-big' ? 2 : type === 'size-middle' ? 1 : 1
-  item.row = type === 'size-big' ? 2 : type === 'size-middle' ? 2 : 1
+  item.column = type === 'size-big' ? 2 : type === 'size-middle' ? 2 : 1
+  item.row = type === 'size-big' ? 4 : type === 'size-middle' ? 2 : 1
 }
 
 function handleCloseSettingMenu() {
