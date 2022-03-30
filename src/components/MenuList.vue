@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-23 12:39:29
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-03-25 23:35:02
+ * @LastEditTime: 2022-03-25 23:45:27
  * @Description:
 -->
 <script setup lang="ts">
@@ -50,6 +50,7 @@ const menus: any = {
     { icon: '#icon-settings-applications', title: '设置', emit: 'setting' },
   ],
   'app-folder': [
+    { icon: '', title: '大', emit: 'size-big' },
     { icon: '', title: '中', emit: 'size-middle' },
     { icon: '', title: '小', emit: 'size-small' },
     { icon: '#icon-create', title: '编辑', emit: 'edit' },

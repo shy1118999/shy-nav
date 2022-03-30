@@ -2,13 +2,13 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-20 14:31:34
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-03-25 22:48:06
+ * @LastEditTime: 2022-03-29 21:59:41
  * @Description: Apps
 -->
 <script lang="ts" setup>
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import type { Swiper as SwiperController } from 'swiper'
-import { Pagination } from 'swiper'
+import { Keyboard, Mousewheel, Pagination } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import draggable from 'vuedraggable'
@@ -28,10 +28,14 @@ const showAppsMenu = ref(false)
 <template>
   <swiper
     :pagination="true"
+    :keyboard="{
+      enabled: true,
+    }"
+    :mousewheel="true"
     flex-1
     w-full
     :initial-slide="activeIndex"
-    :modules="[Pagination]"
+    :modules="[Pagination,Keyboard,Mousewheel]"
     @swiper="x => swiperController = x"
     @slideChange="e => activeIndex = e.activeIndex"
   >
@@ -58,7 +62,6 @@ const showAppsMenu = ref(false)
         >
           <template #item="{ element }">
             <div
-
               relative
               :data-item="element.id"
               class="app-item swiper-no-swiping"

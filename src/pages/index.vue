@@ -2,14 +2,16 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-16 22:21:36
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-03-25 23:29:01
+ * @LastEditTime: 2022-03-30 13:06:35
  * @Description:index
 -->
 <script setup lang="ts">
 import apps from '~/storage/apps'
+import activeIndex from '~/storage/swiperActiveIndex'
 import appItemSetting from '~/storage/appItemSetting'
 const menuRef = ref()
 const showSettingMenu = ref(false)
+const showCreateApp = ref(false)
 
 function getElData(e: HTMLElement): DOMStringMap {
   if (!e.dataset.shyType)
@@ -38,8 +40,10 @@ function handleMenuClick(x: { type: string; data: DOMStringMap }) {
     case 'edit':
       break
     case 'delete':
+      handleDeleteApp(data)
       break
     case 'add-app':
+      showCreateApp.value = true
       break
     case 'setting':
       showSettingMenu.value = true
@@ -47,26 +51,54 @@ function handleMenuClick(x: { type: string; data: DOMStringMap }) {
   }
 }
 
+function handleDeleteApp(data: DOMStringMap) {
+  const { id } = data
+  const index = apps.value[activeIndex.value].list.findIndex(item => item.id == id)
+  if (index === -1) return
+  apps.value[activeIndex.value].list.splice(index, 1)
+}
+
 function handleChangeMenuSize(data: DOMStringMap, type: string) {
-  const id = Number(data.id)
+  const id = data.id
   let x = 0
   let y = 0
   for (let i = 0; i < apps.value.length; i++) {
     for (let j = 0; j < apps.value[i].list.length; j++) {
-      if (apps.value[i].list[j].id === id) {
+      if (`${apps.value[i].list[j].id}` === `${id}`) {
         x = i
         y = j
         break
       }
     }
   }
+  console.log(x, y)
   const item = apps.value[x].list[y]
+  if (data.shyType === 'app-folder') {
+    item.column = type === 'size-big' ? 2 : type === 'size-middle' ? 1 : 1
+    item.row = type === 'size-big' ? 2 : type === 'size-middle' ? 2 : 1
+    return
+  }
   item.column = type === 'size-big' ? 2 : type === 'size-middle' ? 2 : 1
   item.row = type === 'size-big' ? 4 : type === 'size-middle' ? 2 : 1
 }
 
 function handleCloseSettingMenu() {
   showSettingMenu.value = false
+}
+function handleCloseCrateApp() {
+  showCreateApp.value = false
+}
+
+function handleCreateApp(data: any) {
+  apps.value[activeIndex.value].list.push({
+    ...data,
+  })
+  showCreateApp.value = false
+}
+
+function handleCreatePage(data: any) {
+  apps.value.push({ ...data })
+  showCreateApp.value = false
 }
 
 const varStyle = computed(() => ({
@@ -78,11 +110,20 @@ const varStyle = computed(() => ({
   '--icon-name-color': appItemSetting.value.iconNameColor,
   '--icon-name-display': appItemSetting.value.showIconName ? 'block' : 'none',
 }))
+function showJson(style: any) {
+  const s = []
+  for (const i in style)
+    s.push(`${i}:${style[i]}`)
+  return s.join(';')
+}
+watchEffect(() => {
+  document.body.setAttribute('style', showJson(varStyle.value))
+})
 
 </script>
 
 <template>
-  <div data-shy-type="main" select-none w-full h-full flex flex-col :style="varStyle">
+  <div data-shy-type="main" select-none w-full h-full flex flex-col>
     <!-- 时间 -->
     <AppDateTime />
     <!-- 搜索 -->
@@ -92,11 +133,25 @@ const varStyle = computed(() => ({
     <!-- 底部Tab -->
     <AppTab />
     <MenuList ref="menuRef" @menu-click="handleMenuClick" />
-    <Transition duration="550" name="nested">
+    <Transition :duration="550" name="nested">
       <SettingMenu v-if="showSettingMenu" @close="handleCloseSettingMenu" />
+    </Transition>
+    <Transition :duration="550" name="nested">
+      <CreateNewApp v-if="showCreateApp" @close="handleCloseCrateApp" @submit="handleCreateApp" @create-page="handleCreatePage" />
     </Transition>
   </div>
 </template>
+<style>
+/* body{
+  --icon-size: v-bind(`${appItemSetting.iconSize}px`);
+  --icon-gap-x: v-bind(`${appItemSetting.iconGapX}px`);
+  --icon-gap-y: v-bind(`${appItemSetting.iconGapY}px`);
+  --icon-radius: v-bind(`${appItemSetting.iconRadius}px`);
+  --icon-name-size: v-bind(`${appItemSetting.iconNameSize}px`);
+  --icon-name-color: v-bind(appItemSetting.iconNameColor);
+  --icon-name-display: v-bind(appItemSetting.showIconName ? 'block' : 'none');
+} */
+</style>
 <style scoped>
 .nested-enter-active,
 .nested-leave-active {

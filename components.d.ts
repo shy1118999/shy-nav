@@ -5,11 +5,14 @@
 declare module 'vue' {
   export interface GlobalComponents {
     AppDateTime: typeof import('./src/components/AppDateTime.vue')['default']
+    AppFolder: typeof import('./src/components/apps/AppFolder.vue')['default']
     AppItemIcon: typeof import('./src/components/apps/AppItemIcon.vue')['default']
     Apps: typeof import('./src/components/Apps.vue')['default']
     AppSearch: typeof import('./src/components/AppSearch.vue')['default']
     AppTab: typeof import('./src/components/AppTab.vue')['default']
     Background: typeof import('./src/components/Background.vue')['default']
+    CreateApp: typeof import('./src/components/CreateApp.vue')['default']
+    CreateNewApp: typeof import('./src/components/CreateNewApp.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
     MenuList: typeof import('./src/components/MenuList.vue')['default']
     SettingMenu: typeof import('./src/components/SettingMenu.vue')['default']

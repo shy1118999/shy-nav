@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-21 22:46:50
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-03-25 23:41:49
+ * @LastEditTime: 2022-03-28 23:16:47
  * @Description:
  */
 export default useStorage('shy-nav-apps', [
@@ -22,6 +22,14 @@ export default useStorage('shy-nav-apps', [
           { id: 2, column: 1, row: 1, component: 'AppItemIcon', url: 'https://www.huya.com/', icon: 'https://shy-nav.shaohang.xin/nav-icons/huya.svg', title: '虎牙' },
           { id: 4, column: 1, row: 1, component: 'AppItemIcon', url: 'https://www.douyu.com/', icon: 'https://shy-nav.shaohang.xin/nav-icons/douyu.svg', title: '斗鱼' },
           { id: 22, column: 1, row: 1, component: 'AppItemIcon', url: 'https://zh-hans.reactjs.org/', icon: 'https://files.codelife.cc/website/5fec316e8af9860fb41a9ca4.png?x-oss-process=image/resize,limit_0,m_fill,w_150,h_150/quality,q_100', title: 'React' },
+          { id: 111, column: 1, row: 1, component: 'AppItemIcon', url: 'https://www.bilibili.com/', icon: 'https://shy-nav.shaohang.xin/nav-icons/bilibili.svg', title: '哔哩哔哩' },
+          { id: 112, column: 1, row: 1, component: 'AppItemIcon', url: 'https://www.huya.com/', icon: 'https://shy-nav.shaohang.xin/nav-icons/huya.svg', title: '虎牙' },
+          { id: 1114, column: 1, row: 1, component: 'AppItemIcon', url: 'https://www.douyu.com/', icon: 'https://shy-nav.shaohang.xin/nav-icons/douyu.svg', title: '斗鱼' },
+          { id: 1122, column: 1, row: 1, component: 'AppItemIcon', url: 'https://zh-hans.reactjs.org/', icon: 'https://files.codelife.cc/website/5fec316e8af9860fb41a9ca4.png?x-oss-process=image/resize,limit_0,m_fill,w_150,h_150/quality,q_100', title: 'React' },
+          { id: 113, column: 1, row: 1, component: 'AppItemIcon', url: 'https://www.bilibili.com/', icon: 'https://shy-nav.shaohang.xin/nav-icons/bilibili.svg', title: '哔哩哔哩' },
+          { id: 114, column: 1, row: 1, component: 'AppItemIcon', url: 'https://www.huya.com/', icon: 'https://shy-nav.shaohang.xin/nav-icons/huya.svg', title: '虎牙' },
+          { id: 115, column: 1, row: 1, component: 'AppItemIcon', url: 'https://www.douyu.com/', icon: 'https://shy-nav.shaohang.xin/nav-icons/douyu.svg', title: '斗鱼' },
+          { id: 116, column: 1, row: 1, component: 'AppItemIcon', url: 'https://zh-hans.reactjs.org/', icon: 'https://files.codelife.cc/website/5fec316e8af9860fb41a9ca4.png?x-oss-process=image/resize,limit_0,m_fill,w_150,h_150/quality,q_100', title: 'React' },
         ],
         title: '文件夹',
       },
