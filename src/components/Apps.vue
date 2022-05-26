@@ -46,6 +46,7 @@ const showAppsMenu = ref(false)
         max-w-1200px
         mx-auto
         grid
+        p-5
         relative
         justify-center
         grid-flow-row-dense

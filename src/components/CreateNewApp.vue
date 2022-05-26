@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-27 19:02:08
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-03-28 23:11:42
+ * @LastEditTime: 2022-04-04 20:14:20
  * @Description:
 -->
 <script setup lang="ts">
@@ -198,6 +198,7 @@ function handleSubmitPage() {
           添加分页
         </button>
       </div>
+      <div h-0 w-full border-t border-dashed />
       <!-- 添加App图标 -->
       <h3 text-left text-xl my-2 font-bold>
         添加APP图标
@@ -237,11 +238,22 @@ function handleSubmitPage() {
       <p text-left>
         图标
       </p>
+      <input
+        v-model="inputIcon"
+        h-60px
+        w-full
+        my-2
+        text-xl
+        px-2
+        rounded-xl
+        bg="white/50"
+        placeholder="请输入图标链接或者拖到下方~"
+      >
       <div w-120px h-120px my-2 bg="white/50" rounded-xl @drop="handleDrop">
         <!--  -->
         <img v-if="inputIcon" w-120px h-120px :src="inputIcon">
         <p v-else flex justify-center items-center w-full h-full p-2>
-          请将图片拖到此处
+          请将图标拖到此处
         </p>
       </div>
       <div w-full flex justify-end>

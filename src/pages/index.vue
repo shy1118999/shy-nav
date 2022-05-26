@@ -2,13 +2,14 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-16 22:21:36
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-03-30 13:06:35
+ * @LastEditTime: 2022-04-11 20:27:04
  * @Description:index
 -->
 <script setup lang="ts">
 import apps from '~/storage/apps'
 import activeIndex from '~/storage/swiperActiveIndex'
 import appItemSetting from '~/storage/appItemSetting'
+import AppSentences from '~/components/AppSentences.vue'
 const menuRef = ref()
 const showSettingMenu = ref(false)
 const showCreateApp = ref(false)
@@ -38,8 +39,10 @@ function handleMenuClick(x: { type: string; data: DOMStringMap }) {
       handleChangeMenuSize(data, type)
       break
     case 'edit':
+      console.log('edit')
       break
     case 'delete':
+      console.log('delete')
       handleDeleteApp(data)
       break
     case 'add-app':
@@ -131,7 +134,8 @@ watchEffect(() => {
     <!-- apps -->
     <Apps />
     <!-- 底部Tab -->
-    <AppTab />
+    <AppTab v-if="appItemSetting.showTab" />
+    <AppSentences v-else />
     <MenuList ref="menuRef" @menu-click="handleMenuClick" />
     <Transition :duration="550" name="nested">
       <SettingMenu v-if="showSettingMenu" @close="handleCloseSettingMenu" />

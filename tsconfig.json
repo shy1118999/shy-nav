@@ -19,7 +19,8 @@
     ],
     "paths": {
       "~/*": ["src/*"]
-    }
+    },
+    "jsx": "preserve" /* Specify what JSX code is generated. */
   },
   "exclude": ["dist", "node_modules"]
 }

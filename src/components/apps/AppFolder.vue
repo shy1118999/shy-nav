@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-25 22:32:22
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-03-30 13:08:02
+ * @LastEditTime: 2022-04-10 22:30:22
  * @Description:
 -->
 <script setup lang="ts">
@@ -249,6 +249,7 @@ function handleEnterTitle(e: KeyboardEvent) {
 }
 .app-item-icon {
   border-radius: var(--icon-radius);
+  transition: all 0.2s;
 }
 .app-folder-middle::-webkit-scrollbar {
   display: none;
@@ -305,6 +306,12 @@ function handleEnterTitle(e: KeyboardEvent) {
   display: var(--icon-name-display);
   text-align: center;
   /* line-height: calc(2 * var(--icon-gap-y)); */
+}
+.app-item-icon:hover{
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+.dark .app-item-icon:hover {
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
 }
 
 </style>

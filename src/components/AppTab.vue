@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-22 23:02:12
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-03-24 23:01:09
+ * @LastEditTime: 2022-04-05 14:33:33
  * @Description:
 -->
 <script setup lang="ts">
@@ -25,7 +25,7 @@ import tabApps from '~/storage/tabApps'
         <div
           data-shy-type="tab-item"
           :data-id="element.id"
-          :data-url="element.props.url"
+          :data-url="element.url"
           relative
           :data-item="element.id"
           w-80px
@@ -34,7 +34,7 @@ import tabApps from '~/storage/tabApps'
           class="app-item"
         >
           <!-- 实际组件 -->
-          <component :is="element.component" v-bind="element.props" />
+          <component :is="element.component" v-bind="element" />
           <!-- 标题 -->
           <div class="app-item-title" truncate>
             {{ element.title }}

@@ -2,12 +2,17 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-23 22:36:24
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-03-24 23:03:11
+ * @LastEditTime: 2022-04-07 21:53:13
  * @Description: setting
 -->
 <script setup lang="ts">
 import appItemSetting from '~/storage/appItemSetting'
+import background from '~/storage/background'
+import backgroundHistory from '~/storage/backgroundHistory'
 const emit = defineEmits(['close'])
+const bgType = ref(background.value.type)
+const bgSrc = ref(background.value.src)
+const bgColor = ref(background.value.backgroundColor)
 
 function noop(e: MouseEvent) {
   e.preventDefault()
@@ -19,8 +24,65 @@ function handleClickMask(e: MouseEvent) {
   emit('close')
 }
 
-function handleChange(e) {
-  console.log(e)
+function handleSubmitBg() {
+  background.value.type = bgType.value
+  background.value.src = bgSrc.value
+  background.value.backgroundColor = bgColor.value
+  const index = backgroundHistory.value.findIndex((x: any) => x.src === bgSrc.value)
+  if (index > -1)
+    backgroundHistory.value.splice(index, 1)
+
+  backgroundHistory.value.unshift({ ...background.value })
+}
+
+function handleResetBg() {
+  bgType.value = background.value.type
+  bgSrc.value = background.value.src
+  bgColor.value = background.value.backgroundColor
+}
+
+function handleShowBg(bg: any) {
+  bgType.value = bg.type
+  bgSrc.value = bg.src
+  bgColor.value = bg.backgroundColor
+}
+
+function toUrl(e: any) {
+  window.open(e.target.href, '_blank')
+}
+
+function handleExportSetting() {
+  const setting = {} // 定义数据集
+  for (let i = 0; i < localStorage.length; i++) {
+    // 获取key 索引从0开始
+    const key = localStorage.key(i)
+    setting[key] = localStorage.getItem(key)
+  }
+  const data = JSON.stringify(setting)
+  const blob = new Blob([data], { type: 'application/json' })
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = 'shy-nav-setting.json'
+  a.click()
+  URL.revokeObjectURL(url)
+}
+
+function handleImportSetting() {
+  const input = document.createElement('input')
+  input.type = 'file'
+  input.onchange = (e: any) => {
+    const file = e.target.files[0]
+    const reader = new FileReader()
+    reader.readAsText(file)
+    reader.onload = (e: any) => {
+      const data = JSON.parse(e.target.result)
+      for (const key in data)
+        localStorage.setItem(key, data[key])
+      window.location.reload()
+    }
+  }
+  input.click()
 }
 
 </script>
@@ -42,19 +104,74 @@ function handleChange(e) {
       right-0
       top-0
       p-5
-      flex
-      flex-col
-      justify-start
-      items-start
       bottom-0
       bg="gray/60"
       w-120
       z-999999
+      overflow-y-auto
       @click.stop="noop"
       @contextmenu.stop="noop"
     >
+      <!-- 设置导入/导出 -->
+      <p w-full text-left p-3>
+        设置
+      </p>
+      <div flex w-full align-center justify-around>
+        <div btn @click="handleExportSetting">
+          导出现有配置
+        </div>
+        <div btn @click="handleImportSetting">
+          导入已有配置
+        </div>
+      </div>
+      <div mt-5 h-0 w-full border-t border-dashed />
+      <div my-2 w-full flex items-center justify-between rounded-xl bg="white/20" p-3>
+        底部显示
+        <div flex bg="gray/50" rounded-xl p-0 leading-35px overflow-hidden cursor-pointer w-7em>
+          <div :class="{ 'bg-green-400': appItemSetting.showTab }" flex-1 w-full h-full px-2 @click="appItemSetting.showTab = true">
+            Tab
+          </div>
+          <div :class="{ 'bg-green-400': !appItemSetting.showTab }" flex-1 w-full h-full px-2 @click="appItemSetting.showTab = false">
+            一言
+          </div>
+        </div>
+      </div>
+      <!-- 背景 -->
+      <p w-full text-left p-3>
+        背景
+      </p>
+      <input v-model="bgSrc" placeholder="Background Image Url" my-2 w-full flex items-center justify-between rounded-xl bg="white/20" p-3 leading-35px>
+      <div my-2 w-full flex items-center justify-between rounded-xl bg="white/20" p-3 leading-35px>
+        <div>背景默认颜色</div>
+        <input v-model="bgColor" w-5 h-5 type="color">
+      </div>
+      <div w-full flex justify-end>
+        <button btn m-2 @click="handleResetBg">
+          取消修改
+        </button>
+        <button btn m-2 @click="handleSubmitBg">
+          修改
+        </button>
+      </div>
+      <p w-full text-left p-3>
+        历史背景
+      </p>
+      <div w-full h-88px rounded-xl bg="white/20" p-10px overflow-auto style="white-space: nowrap;">
+        <img
+          v-for="bg in backgroundHistory"
+          :key="bg.src"
+          w-120px h-68px
+          px-2 m-0
+          inline-block
+          cursor-pointer
+          :src="bg.src"
+          @click="handleShowBg(bg)"
+        >
+      </div>
+      <p>Tips：可以在这查找背景<a href="https://wallhaven.cc/" color="#1a0dab" target="_blank" @click="toUrl">wallhaven</a>、<a href="https://unsplash.com/" color="#1a0dab" target="_blank" @click="toUrl">unsplash</a>。</p>
+      <div mt-5 h-0 w-full border-t border-dashed />
       <!-- 图标 -->
-      <p p-3>
+      <p w-full text-left p-3>
         图标
       </p>
 
@@ -92,7 +209,7 @@ function handleChange(e) {
       </div>
       <!-- 不透明度 -->
       <!-- 间距 -->
-      <p p-3>
+      <p w-full text-left p-3>
         间距
       </p>
       <!-- 行间距 -->

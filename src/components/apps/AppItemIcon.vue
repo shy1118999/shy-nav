@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2021-12-28 23:51:07
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-03-28 22:25:42
+ * @LastEditTime: 2022-04-10 22:29:50
  * @Description: AppItem
 -->
 <script lang="ts" setup>
@@ -41,6 +41,13 @@ function handleClick() {
 </template>
 <style scoped>
 .app-item-icon {
+  transition: all 0.2s;
   border-radius: var(--icon-radius);
+}
+.app-item-icon:hover{
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+.dark .app-item-icon:hover {
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
 }
 </style>

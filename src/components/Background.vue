@@ -2,21 +2,12 @@
  * @Author: shaohang-shy
  * @Date: 2021-12-28 23:38:53
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-03-20 12:35:38
+ * @LastEditTime: 2022-04-04 18:43:35
  * @Description: Background Component
 -->
 <script lang="ts" setup>
-type Type = 'image'
-interface Props {
-  type?: Type
-  src?: string
-  backgroundColor?: string
-}
-const props = withDefaults(defineProps<Props>(), {
-  type: 'image',
-  src: 'https://hao.shaohang.xin/bg/bg4.jpg',
-  backgroundColor: '#0084FF',
-})
+import background from '~/storage/background'
+
 </script>
 <template>
   <div
@@ -31,11 +22,11 @@ const props = withDefaults(defineProps<Props>(), {
     z--1
 
     :style="{
-      backgroundColor: props.backgroundColor,
+      backgroundColor: background.backgroundColor,
     }"
   >
     <div
-      v-if="props.type == 'image'"
+      v-if="background.type == 'image'"
       transition-duration-200
       h-full
       w-full
@@ -44,7 +35,7 @@ const props = withDefaults(defineProps<Props>(), {
       bg-no-repeat
       bg-center
       :style="{
-        backgroundImage: `url(${props.src})`,
+        backgroundImage: `url(${background.src})`,
       }"
     />
   </div>
