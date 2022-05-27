@@ -2,13 +2,13 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-16 22:21:36
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-04-11 20:27:04
+ * @LastEditTime: 2022-05-27 11:16:10
  * @Description:index
 -->
 <script setup lang="ts">
 import apps from '~/storage/apps'
-import activeIndex from '~/storage/swiperActiveIndex'
 import appItemSetting from '~/storage/appItemSetting'
+import activeIndex from '~/storage/swiperActiveIndex'
 import AppSentences from '~/components/AppSentences.vue'
 const menuRef = ref()
 const showSettingMenu = ref(false)
@@ -103,25 +103,6 @@ function handleCreatePage(data: any) {
   apps.value.push({ ...data })
   showCreateApp.value = false
 }
-
-const varStyle = computed(() => ({
-  '--icon-size': `${appItemSetting.value.iconSize}px`,
-  '--icon-gap-x': `${appItemSetting.value.iconGapX}px`,
-  '--icon-gap-y': `${appItemSetting.value.iconGapY}px`,
-  '--icon-radius': `${appItemSetting.value.iconRadius}px`,
-  '--icon-name-size': `${appItemSetting.value.iconNameSize}px`,
-  '--icon-name-color': appItemSetting.value.iconNameColor,
-  '--icon-name-display': appItemSetting.value.showIconName ? 'block' : 'none',
-}))
-function showJson(style: any) {
-  const s = []
-  for (const i in style)
-    s.push(`${i}:${style[i]}`)
-  return s.join(';')
-}
-watchEffect(() => {
-  document.body.setAttribute('style', showJson(varStyle.value))
-})
 
 </script>
 

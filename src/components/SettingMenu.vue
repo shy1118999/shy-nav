@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-23 22:36:24
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-04-07 21:53:13
+ * @LastEditTime: 2022-05-27 11:28:34
  * @Description: setting
 -->
 <script setup lang="ts">
@@ -143,7 +143,7 @@ function handleImportSetting() {
       <input v-model="bgSrc" placeholder="Background Image Url" my-2 w-full flex items-center justify-between rounded-xl bg="white/20" p-3 leading-35px>
       <div my-2 w-full flex items-center justify-between rounded-xl bg="white/20" p-3 leading-35px>
         <div>背景默认颜色</div>
-        <input v-model="bgColor" w-5 h-5 type="color">
+        <input v-model="bgColor" z-9999999 w-5 h-5 type="color" @change="() => {}" @click="()=>{}">
       </div>
       <div w-full flex justify-end>
         <button btn m-2 @click="handleResetBg">
@@ -231,3 +231,8 @@ function handleImportSetting() {
     </div>
   </div>
 </template>
+<style>
+::-webkit-color-swatch-wrapper {
+  z-index: 99999999;
+}
+</style>

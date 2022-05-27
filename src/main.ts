@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-11 17:55:49
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-04-05 14:44:16
+ * @LastEditTime: 2022-05-27 11:04:54
  * @Description:
  */
 import { createApp } from 'vue'
@@ -15,6 +15,7 @@ import './styles/main.css'
 import 'uno.css'
 import AppItemIcon from './components/apps/AppItemIcon.vue'
 import AppFolder from './components/apps/AppFolder.vue'
+import Calendar from './components/apps/Calendar.vue'
 
 const app = createApp(App)
 const router = createRouter({
@@ -23,5 +24,6 @@ const router = createRouter({
 })
 app.component('AppItemIcon', AppItemIcon)
 app.component('AppFolder', AppFolder)
+app.component('Calendar', Calendar)
 app.use(router)
 app.mount('#app')

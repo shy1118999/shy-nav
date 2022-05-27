@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-27 19:02:08
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-04-04 20:14:20
+ * @LastEditTime: 2022-05-27 11:04:03
  * @Description:
 -->
 <script setup lang="ts">
@@ -91,6 +91,15 @@ function handleSubmitFolder() {
     row: 1,
     component: 'AppFolder',
     apps: [],
+  })
+}
+function handleAddCalendar() {
+  emit('submit', {
+    title: '日历',
+    id: uuid(),
+    column: 1,
+    row: 1,
+    component: 'calendar',
   })
 }
 const inputPageName = ref('')
@@ -285,6 +294,13 @@ function handleSubmitPage() {
           确定
         </button>
       </div>
+      <div h-0 w-full border-t border-dashed />
+      <div w-full flex justify-start>
+        <button btn m-2 @click="handleAddCalendar">
+          添加日历
+        </button>
+      </div>
+      <div h-0 w-full border-t border-dashed />
     </div>
   </div>
 </template>

@@ -12,12 +12,14 @@ declare module 'vue' {
     AppSentences: typeof import('./src/components/AppSentences.vue')['default']
     AppTab: typeof import('./src/components/AppTab.vue')['default']
     Background: typeof import('./src/components/Background.vue')['default']
+    Calendar: typeof import('./src/components/apps/Calendar.vue')['default']
     CreateApp: typeof import('./src/components/CreateApp.vue')['default']
     CreateNewApp: typeof import('./src/components/CreateNewApp.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
     HistoryToday: typeof import('./src/components/apps/HistoryToday.vue')['default']
     MenuList: typeof import('./src/components/MenuList.vue')['default']
     SettingMenu: typeof import('./src/components/SettingMenu.vue')['default']
+    Timestamp: typeof import('./src/components/apps/Timestamp.vue')['default']
   }
 }
 
