@@ -19,7 +19,6 @@ declare module 'vue' {
     HistoryToday: typeof import('./src/components/apps/HistoryToday.vue')['default']
     MenuList: typeof import('./src/components/MenuList.vue')['default']
     SettingMenu: typeof import('./src/components/SettingMenu.vue')['default']
-    Timestamp: typeof import('./src/components/apps/Timestamp.vue')['default']
   }
 }
 

@@ -10,6 +10,7 @@ specifiers:
   '@vueuse/core': ^8.1.2
   animate.css: ^4.1.1
   axios: ^0.26.1
+  dayjs: ^1.11.2
   eslint: ^8.11.0
   jsdom: ^19.0.0
   pnpm: ^6.32.3
@@ -32,6 +33,7 @@ dependencies:
   '@vueuse/core': registry.npmmirror.com/@vueuse/core/8.1.2_vue@3.2.31
   animate.css: registry.npmmirror.com/animate.css/4.1.1
   axios: registry.npmmirror.com/axios/0.26.1
+  dayjs: registry.npmmirror.com/dayjs/1.11.2
   sass: registry.npmmirror.com/sass/1.52.1
   swiper: registry.npmmirror.com/swiper/8.0.7
   uuid: registry.npmmirror.com/uuid/8.3.2
@@ -1511,6 +1513,12 @@ packages:
       whatwg-mimetype: registry.npmmirror.com/whatwg-mimetype/3.0.0
       whatwg-url: registry.npmmirror.com/whatwg-url/10.0.0
     dev: true
+
+  registry.npmmirror.com/dayjs/1.11.2:
+    resolution: {integrity: sha512-F4LXf1OeU9hrSYRPTTj/6FbO4HTjPKXvEIC1P2kcnFurViINCVk3ZV0xAS3XVx9MkMsXbbqlK6hjseaYbgKEHw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/dayjs/-/dayjs-1.11.2.tgz}
+    name: dayjs
+    version: 1.11.2
+    dev: false
 
   registry.npmmirror.com/debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/debug/-/debug-2.6.9.tgz}
