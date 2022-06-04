@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-05-27 13:39:04
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-05-27 16:23:58
+ * @LastEditTime: 2022-05-27 20:16:02
  * @Description: timestamp
 -->
 <!-- https://shy-nav.shaohang.xin/nav-icons/timestamp.svg -->
@@ -69,7 +69,7 @@ function updateTimeNow() {
   timeNowTimestamp.value = (new Date()).getTime()
 }
 
-let handle: NodeJS.Timer|null = setInterval(updateTimeNow, 100)
+let handle: NodeJS.Timer | null = setInterval(updateTimeNow, 100)
 function handleStart() {
   if (!handle)
     handle = setInterval(updateTimeNow, 100)
@@ -116,9 +116,9 @@ function handleChangeDateType(e: Event) {
       Unix时间戳
     </h1>
     <div class="flex mt-5" children:rounded-none>
-      <span bg="white/50" px-16px py-8px>当前时间</span>
+      <span bg="white/50" dark:bg="white/30" px-16px py-8px>当前时间</span>
       <input :value="(timeNowTimestamp / nowBase).toFixed()" font-mono>
-      <select px-2 @change="handleChangeNowType">
+      <select px-2 bg="white/50" dark:bg="white/30" @change="handleChangeNowType">
         <option value="s">
           秒
         </option>
@@ -138,9 +138,9 @@ function handleChangeDateType(e: Event) {
       </button>
     </div>
     <div class="flex mt-5" children:rounded-none>
-      <span bg="white/50" px-16px py-8px>Unix时间戳</span>
+      <span bg="white/50" dark:bg="white/30" px-16px py-8px>Unix时间戳</span>
       <input v-model="inputTimestamp" font-mono onpaste="setTimeout(timeToDate,1)">
-      <select px-2 @change="handleChangeUnixType">
+      <select px-2 bg="white/50" dark:bg="white/30" @change="handleChangeUnixType">
         <option value="s">
           秒
         </option>
@@ -151,10 +151,11 @@ function handleChangeDateType(e: Event) {
       <input v-model="outputTimestamp">
     </div>
     <div class="flex mt-5" children:rounded-none>
-      <span bg="white/50" px-16px py-8px>北京时间</span>
+      <span bg="white/50" dark:bg="white/30" px-16px py-8px>北京时间</span>
       <input v-model="inputDate" font-mono>
+      <div h-full w-1 w-0 />
       <input v-model="outputDate" font-mono>
-      <select px-2 @change="handleChangeDateType">
+      <select px-2 bg="white/50" dark:bg="white/30" @change="handleChangeDateType">
         <option value="s">
           秒
         </option>
@@ -200,6 +201,10 @@ function handleChangeDateType(e: Event) {
 </template>
 <style scoped>
 input {
-    padding: 0 10px;
+  padding: 0 10px;
+}
+
+.dark input {
+  background: rgba(255, 255, 255, 0.5);
 }
 </style>
