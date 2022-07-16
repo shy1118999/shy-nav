@@ -16,6 +16,7 @@ declare module 'vue' {
     Calendar: typeof import('./src/components/apps/Calendar.vue')['default']
     CreateApp: typeof import('./src/components/CreateApp.vue')['default']
     CreateNewApp: typeof import('./src/components/CreateNewApp.vue')['default']
+    Drawer: typeof import('./src/components/Drawer.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
     HistoryToday: typeof import('./src/components/apps/HistoryToday.vue')['default']
     MenuList: typeof import('./src/components/MenuList.vue')['default']

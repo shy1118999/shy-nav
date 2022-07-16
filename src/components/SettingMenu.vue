@@ -2,27 +2,16 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-23 22:36:24
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-05-27 11:28:34
+ * @LastEditTime: 2022-07-16 17:26:21
  * @Description: setting
 -->
 <script setup lang="ts">
 import appItemSetting from '~/storage/appItemSetting'
 import background from '~/storage/background'
 import backgroundHistory from '~/storage/backgroundHistory'
-const emit = defineEmits(['close'])
 const bgType = ref(background.value.type)
 const bgSrc = ref(background.value.src)
 const bgColor = ref(background.value.backgroundColor)
-
-function noop(e: MouseEvent) {
-  e.preventDefault()
-  e.stopPropagation()
-}
-function handleClickMask(e: MouseEvent) {
-  e.preventDefault()
-  e.stopPropagation()
-  emit('close')
-}
 
 function handleSubmitBg() {
   background.value.type = bgType.value
@@ -56,6 +45,8 @@ function handleExportSetting() {
   for (let i = 0; i < localStorage.length; i++) {
     // 获取key 索引从0开始
     const key = localStorage.key(i)
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     setting[key] = localStorage.getItem(key)
   }
   const data = JSON.stringify(setting)
@@ -87,147 +78,120 @@ function handleImportSetting() {
 
 </script>
 <template>
-  <div
-    fixed
-    top-0
-    bottom-0
-    left-0
-    right-0
-    bg="gray/30"
-    backdrop-blur-sm
-    z-99999
-    @click.stop="handleClickMask"
-    @contextmenu.stop="handleClickMask"
-  >
-    <div
-      absolute
-      right-0
-      top-0
-      p-5
-      bottom-0
-      bg="gray/60"
-      w-120
-      z-999999
-      overflow-y-auto
-      @click.stop="noop"
-      @contextmenu.stop="noop"
+  <!-- 设置导入/导出 -->
+  <p w-full text-left p-3>
+    设置
+  </p>
+  <div flex w-full align-center justify-around>
+    <div btn @click="handleExportSetting">
+      导出现有配置
+    </div>
+    <div btn @click="handleImportSetting">
+      导入已有配置
+    </div>
+  </div>
+  <div mt-5 h-0 w-full border-t border-dashed />
+  <div my-2 w-full flex items-center justify-between rounded-xl bg="white/20" p-3>
+    底部显示
+    <div flex bg="gray/50" rounded-xl p-0 leading-35px overflow-hidden cursor-pointer w-7em>
+      <div :class="{ 'bg-green-400': appItemSetting.showTab }" flex-1 w-full h-full px-2 @click="appItemSetting.showTab = true">
+        Tab
+      </div>
+      <div :class="{ 'bg-green-400': !appItemSetting.showTab }" flex-1 w-full h-full px-2 @click="appItemSetting.showTab = false">
+        一言
+      </div>
+    </div>
+  </div>
+  <!-- 背景 -->
+  <p w-full text-left p-3>
+    背景
+  </p>
+  <input v-model="bgSrc" placeholder="Background Image Url" my-2 w-full flex items-center justify-between rounded-xl bg="white/20" p-3 leading-35px>
+  <div my-2 w-full flex items-center justify-between rounded-xl bg="white/20" p-3 leading-35px>
+    <div>背景默认颜色</div>
+    <input v-model="bgColor" z-9999999 w-5 h-5 type="color" @change="() => {}" @click="()=>{}">
+  </div>
+  <div w-full flex justify-end>
+    <button btn m-2 @click="handleResetBg">
+      取消修改
+    </button>
+    <button btn m-2 @click="handleSubmitBg">
+      修改
+    </button>
+  </div>
+  <p w-full text-left p-3>
+    历史背景
+  </p>
+  <div w-full h-88px rounded-xl bg="white/20" p-10px overflow-auto style="white-space: nowrap;">
+    <img
+      v-for="bg in backgroundHistory"
+      :key="bg.src"
+      w-120px h-68px
+      px-2 m-0
+      inline-block
+      cursor-pointer
+      :src="bg.src"
+      @click="handleShowBg(bg)"
     >
-      <!-- 设置导入/导出 -->
-      <p w-full text-left p-3>
-        设置
-      </p>
-      <div flex w-full align-center justify-around>
-        <div btn @click="handleExportSetting">
-          导出现有配置
-        </div>
-        <div btn @click="handleImportSetting">
-          导入已有配置
-        </div>
-      </div>
-      <div mt-5 h-0 w-full border-t border-dashed />
-      <div my-2 w-full flex items-center justify-between rounded-xl bg="white/20" p-3>
-        底部显示
-        <div flex bg="gray/50" rounded-xl p-0 leading-35px overflow-hidden cursor-pointer w-7em>
-          <div :class="{ 'bg-green-400': appItemSetting.showTab }" flex-1 w-full h-full px-2 @click="appItemSetting.showTab = true">
-            Tab
-          </div>
-          <div :class="{ 'bg-green-400': !appItemSetting.showTab }" flex-1 w-full h-full px-2 @click="appItemSetting.showTab = false">
-            一言
-          </div>
-        </div>
-      </div>
-      <!-- 背景 -->
-      <p w-full text-left p-3>
-        背景
-      </p>
-      <input v-model="bgSrc" placeholder="Background Image Url" my-2 w-full flex items-center justify-between rounded-xl bg="white/20" p-3 leading-35px>
-      <div my-2 w-full flex items-center justify-between rounded-xl bg="white/20" p-3 leading-35px>
-        <div>背景默认颜色</div>
-        <input v-model="bgColor" z-9999999 w-5 h-5 type="color" @change="() => {}" @click="()=>{}">
-      </div>
-      <div w-full flex justify-end>
-        <button btn m-2 @click="handleResetBg">
-          取消修改
-        </button>
-        <button btn m-2 @click="handleSubmitBg">
-          修改
-        </button>
-      </div>
-      <p w-full text-left p-3>
-        历史背景
-      </p>
-      <div w-full h-88px rounded-xl bg="white/20" p-10px overflow-auto style="white-space: nowrap;">
-        <img
-          v-for="bg in backgroundHistory"
-          :key="bg.src"
-          w-120px h-68px
-          px-2 m-0
-          inline-block
-          cursor-pointer
-          :src="bg.src"
-          @click="handleShowBg(bg)"
-        >
-      </div>
-      <p>Tips：可以在这查找背景<a href="https://wallhaven.cc/" color="#1a0dab" target="_blank" @click="toUrl">wallhaven</a>、<a href="https://unsplash.com/" color="#1a0dab" target="_blank" @click="toUrl">unsplash</a>。</p>
-      <div mt-5 h-0 w-full border-t border-dashed />
-      <!-- 图标 -->
-      <p w-full text-left p-3>
-        图标
-      </p>
+  </div>
+  <p>Tips：可以在这查找背景<a href="https://wallhaven.cc/" color="#1a0dab" target="_blank" @click="toUrl">wallhaven</a>、<a href="https://unsplash.com/" color="#1a0dab" target="_blank" @click="toUrl">unsplash</a>。</p>
+  <div mt-5 h-0 w-full border-t border-dashed />
+  <!-- 图标 -->
+  <p w-full text-left p-3>
+    图标
+  </p>
 
-      <!-- 图标名称：是否显示 -->
-      <div my-2 w-full flex items-center justify-between rounded-xl bg="white/20" p-3>
-        图标名称
-        <div flex bg="gray/50" rounded-xl p-0 leading-35px overflow-hidden cursor-pointer>
-          <div :class="{ 'bg-green-400': appItemSetting.showIconName }" flex-1 w-full h-full px-2 @click="appItemSetting.showIconName = true">
-            显示
-          </div>
-          <div :class="{ 'bg-green-400': !appItemSetting.showIconName }" flex-1 w-full h-full px-2 @click="appItemSetting.showIconName = false">
-            隐藏
-          </div>
-        </div>
+  <!-- 图标名称：是否显示 -->
+  <div my-2 w-full flex items-center justify-between rounded-xl bg="white/20" p-3>
+    图标名称
+    <div flex bg="gray/50" rounded-xl p-0 leading-35px overflow-hidden cursor-pointer>
+      <div :class="{ 'bg-green-400': appItemSetting.showIconName }" flex-1 w-full h-full px-2 @click="appItemSetting.showIconName = true">
+        显示
       </div>
-      <!-- 图标名称：颜色 -->
-      <!-- <div>
+      <div :class="{ 'bg-green-400': !appItemSetting.showIconName }" flex-1 w-full h-full px-2 @click="appItemSetting.showIconName = false">
+        隐藏
+      </div>
+    </div>
+  </div>
+  <!-- 图标名称：颜色 -->
+  <!-- <div>
         图标颜色
       </div> -->
-      <!-- 图标大小  -->
-      <div my-2 w-full flex items-center justify-between rounded-xl bg="white/20" p-3 leading-35px>
-        <div>图标大小</div>
-        <input v-model="appItemSetting.iconSize" flex-1 mx-5 type="range" min="30" max="150" step="1">
-        <div w-20>
-          {{ `${appItemSetting.iconSize}px` }}
-        </div>
-      </div>
-      <!-- 图标圆角-->
-      <div my-2 w-full flex items-center justify-between rounded-xl bg="white/20" p-3 leading-35px>
-        <div>图标圆角</div>
-        <input v-model="appItemSetting.iconRadius" flex-1 mx-5 type="range" min="0" max="36" step="1">
-        <div w-20>
-          {{ `${appItemSetting.iconRadius}px` }}
-        </div>
-      </div>
-      <!-- 不透明度 -->
-      <!-- 间距 -->
-      <p w-full text-left p-3>
-        间距
-      </p>
-      <!-- 行间距 -->
-      <div my-2 w-full flex items-center justify-between rounded-xl bg="white/20" p-3 leading-35px>
-        <div>行间距</div>
-        <input v-model="appItemSetting.iconGapX" flex-1 mx-5 type="range" min="0" max="100" step="1">
-        <div w-20>
-          {{ `${appItemSetting.iconGapX}px` }}
-        </div>
-      </div>
-      <!-- 列间距 -->
-      <div my-2 w-full flex items-center justify-between rounded-xl bg="white/20" p-3 leading-35px>
-        <div>列间距</div>
-        <input v-model="appItemSetting.iconGapY" flex-1 mx-5 type="range" min="0" max="100" step="1">
-        <div w-20>
-          {{ `${appItemSetting.iconGapY}px` }}
-        </div>
-      </div>
+  <!-- 图标大小  -->
+  <div my-2 w-full flex items-center justify-between rounded-xl bg="white/20" p-3 leading-35px>
+    <div>图标大小</div>
+    <input v-model="appItemSetting.iconSize" flex-1 mx-5 type="range" min="30" max="150" step="1">
+    <div w-20>
+      {{ `${appItemSetting.iconSize}px` }}
+    </div>
+  </div>
+  <!-- 图标圆角-->
+  <div my-2 w-full flex items-center justify-between rounded-xl bg="white/20" p-3 leading-35px>
+    <div>图标圆角</div>
+    <input v-model="appItemSetting.iconRadius" flex-1 mx-5 type="range" min="0" max="36" step="1">
+    <div w-20>
+      {{ `${appItemSetting.iconRadius}px` }}
+    </div>
+  </div>
+  <!-- 不透明度 -->
+  <!-- 间距 -->
+  <p w-full text-left p-3>
+    间距
+  </p>
+  <!-- 行间距 -->
+  <div my-2 w-full flex items-center justify-between rounded-xl bg="white/20" p-3 leading-35px>
+    <div>行间距</div>
+    <input v-model="appItemSetting.iconGapX" flex-1 mx-5 type="range" min="0" max="100" step="1">
+    <div w-20>
+      {{ `${appItemSetting.iconGapX}px` }}
+    </div>
+  </div>
+  <!-- 列间距 -->
+  <div my-2 w-full flex items-center justify-between rounded-xl bg="white/20" p-3 leading-35px>
+    <div>列间距</div>
+    <input v-model="appItemSetting.iconGapY" flex-1 mx-5 type="range" min="0" max="100" step="1">
+    <div w-20>
+      {{ `${appItemSetting.iconGapY}px` }}
     </div>
   </div>
 </template>

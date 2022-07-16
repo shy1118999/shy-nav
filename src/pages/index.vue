@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-16 22:21:36
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-07-09 21:23:07
+ * @LastEditTime: 2022-07-16 17:30:16
  * @Description:index
 -->
 <script setup lang="ts">
@@ -42,7 +42,6 @@ function handleMenuClick(x: { type: string; data: DOMStringMap }) {
       console.log('edit')
       break
     case 'delete':
-      console.log('delete')
       handleDeleteApp(data)
       break
     case 'add-app':
@@ -74,7 +73,6 @@ function handleChangeMenuSize(data: DOMStringMap, type: string) {
       }
     }
   }
-  console.log(x, y)
   const item = apps.value[x].list[y]
   if (data.shyType === 'app-folder') {
     item.column = type === 'size-big' ? 2 : type === 'size-middle' ? 1 : 1
@@ -83,13 +81,6 @@ function handleChangeMenuSize(data: DOMStringMap, type: string) {
   }
   item.column = type === 'size-big' ? 2 : type === 'size-middle' ? 2 : 1
   item.row = type === 'size-big' ? 4 : type === 'size-middle' ? 2 : 1
-}
-
-function handleCloseSettingMenu() {
-  showSettingMenu.value = false
-}
-function handleCloseCrateApp() {
-  showCreateApp.value = false
 }
 
 function handleCreateApp(data: any) {
@@ -119,12 +110,12 @@ function handleCreatePage(data: any) {
     <!-- <AppPagination v-else /> -->
     <AppSentences v-else />
     <MenuList ref="menuRef" @menu-click="handleMenuClick" />
-    <Transition :duration="550" name="nested">
-      <SettingMenu v-if="showSettingMenu" @close="handleCloseSettingMenu" />
-    </Transition>
-    <Transition :duration="550" name="nested">
-      <CreateNewApp v-if="showCreateApp" @close="handleCloseCrateApp" @submit="handleCreateApp" @create-page="handleCreatePage" />
-    </Transition>
+    <Drawer :show="showSettingMenu" @close="showSettingMenu = false">
+      <SettingMenu />
+    </Drawer>
+    <Drawer :show="showCreateApp" @close="showCreateApp = false">
+      <CreateNewApp @submit="handleCreateApp" @create-page="handleCreatePage" />
+    </Drawer>
   </div>
 </template>
 <style>
@@ -137,19 +128,4 @@ function handleCreatePage(data: any) {
   --icon-name-color: v-bind(appItemSetting.iconNameColor);
   --icon-name-display: v-bind(appItemSetting.showIconName ? 'block' : 'none');
 } */
-</style>
-<style scoped>
-.nested-enter-active,
-.nested-leave-active {
-  transition: all 0.3s ease-in-out;
-}
-.nested-leave-active {
-  transition-delay: 0;
-}
-
-.nested-enter-from,
-.nested-leave-to {
-  transform: translateX(30px);
-  opacity: 0;
-}
 </style>
