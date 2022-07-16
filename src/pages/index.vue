@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-16 22:21:36
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-07-16 17:30:16
+ * @LastEditTime: 2022-07-16 17:41:00
  * @Description:index
 -->
 <script setup lang="ts">
@@ -13,6 +13,8 @@ import AppSentences from '~/components/AppSentences.vue'
 const menuRef = ref()
 const showSettingMenu = ref(false)
 const showCreateApp = ref(false)
+const showEditApp = ref(false)
+const editAppId = ref<string | number>('')
 
 function getElData(e: HTMLElement): DOMStringMap {
   if (!e.dataset.shyType)
@@ -39,7 +41,10 @@ function handleMenuClick(x: { type: string; data: DOMStringMap }) {
       handleChangeMenuSize(data, type)
       break
     case 'edit':
-      console.log('edit')
+      if (data.shyType === 'app-item') {
+        editAppId.value = data.id ?? ''
+        showEditApp.value = true
+      }
       break
     case 'delete':
       handleDeleteApp(data)
@@ -115,6 +120,9 @@ function handleCreatePage(data: any) {
     </Drawer>
     <Drawer :show="showCreateApp" @close="showCreateApp = false">
       <CreateNewApp @submit="handleCreateApp" @create-page="handleCreatePage" />
+    </Drawer>
+    <Drawer :show="showEditApp" @close="showEditApp = false">
+      <EditApp :id="editAppId" @close="showEditApp = false" />
     </Drawer>
   </div>
 </template>

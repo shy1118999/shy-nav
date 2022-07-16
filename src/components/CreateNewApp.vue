@@ -2,29 +2,24 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-27 19:02:08
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-07-16 17:23:00
+ * @LastEditTime: 2022-07-16 17:56:05
  * @Description:
 -->
 <script setup lang="ts">
 import { v4 as uuid } from 'uuid'
+import { imageToBase64 } from '~/utils'
 
 const emit = defineEmits(['close', 'submit', 'createPage'])
 const inputUrl = ref('')
 const inputTitle = ref('')
 const inputIcon = ref('')
 
-function handleDrop(e: any) {
+async function handleDrop(e: any) {
   const file = e.dataTransfer.files[0]
   if (/^image\/.*?$/.test(file.type))
-    handleImageToBase64(file)
+    inputIcon.value = await imageToBase64(file) as string
 }
-function handleImageToBase64(image: any) {
-  const reader = new FileReader()
-  reader.onload = (e) => {
-    inputIcon.value = reader.result?.toString() ?? ''
-  }
-  reader.readAsDataURL(image)
-}
+
 function handleSubmit() {
   if (inputUrl.value.trim() === '') {
     alert('请输入url')
