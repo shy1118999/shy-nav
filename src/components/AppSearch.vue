@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-20 14:29:50
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-03-23 21:29:40
+ * @LastEditTime: 2022-07-09 10:33:32
  * @Description: AppSearch
 -->
 <script lang="ts" setup>
@@ -133,23 +133,23 @@ function search() {
 </template>
 <style scoped>
 .bounce-enter-active {
-  animation: bounce-in 0.5s;
+  animation: bounce-in 0.3s;
 }
 .bounce-leave-active {
-  animation: bounce-in 0.5s reverse;
+  animation: bounce-in 0.3s reverse;
 }
 @keyframes bounce-in {
   0% {
     opacity: 0;
-    transform: scale(0);
+    transform: translateY(-50%) rotateX(90deg);
   }
-  50% {
+  /* 50% {
     opacity: 0.5;
-    transform: scale(1.2);
-  }
+    transform: translateY(-20%) rotateX(45deg);
+  } */
   100% {
     opacity: 1;
-    transform: scale(1);
+    transform: translateY(0) rotateX(0);
   }
 }
 </style>

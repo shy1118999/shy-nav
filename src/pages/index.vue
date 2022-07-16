@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-16 22:21:36
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-05-27 11:16:10
+ * @LastEditTime: 2022-07-09 21:23:07
  * @Description:index
 -->
 <script setup lang="ts">
@@ -116,6 +116,7 @@ function handleCreatePage(data: any) {
     <Apps />
     <!-- 底部Tab -->
     <AppTab v-if="appItemSetting.showTab" />
+    <!-- <AppPagination v-else /> -->
     <AppSentences v-else />
     <MenuList ref="menuRef" @menu-click="handleMenuClick" />
     <Transition :duration="550" name="nested">

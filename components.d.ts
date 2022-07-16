@@ -7,6 +7,7 @@ declare module 'vue' {
     AppDateTime: typeof import('./src/components/AppDateTime.vue')['default']
     AppFolder: typeof import('./src/components/apps/AppFolder.vue')['default']
     AppItemIcon: typeof import('./src/components/apps/AppItemIcon.vue')['default']
+    AppPagination: typeof import('./src/components/AppPagination.vue')['default']
     Apps: typeof import('./src/components/Apps.vue')['default']
     AppSearch: typeof import('./src/components/AppSearch.vue')['default']
     AppSentences: typeof import('./src/components/AppSentences.vue')['default']

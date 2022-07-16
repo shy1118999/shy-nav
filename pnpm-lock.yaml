@@ -26,6 +26,7 @@ specifiers:
   vitest: ^0.6.3
   vue: 3.2.26
   vue-router: ^4.1.1
+  vue-tippy: ^6.0.0-alpha.60
   vue-tsc: ^0.32.1
   vuedraggable: ^4.1.0
 
@@ -39,6 +40,7 @@ dependencies:
   uuid: registry.npmmirror.com/uuid/8.3.2
   vue: registry.npmmirror.com/vue/3.2.26
   vue-router: registry.npmmirror.com/vue-router/4.1.1_vue@3.2.26
+  vue-tippy: registry.npmmirror.com/vue-tippy/6.0.0-alpha.60_vue@3.2.26
   vuedraggable: registry.npmmirror.com/vuedraggable/4.1.0_vue@3.2.26
 
 devDependencies:
@@ -385,6 +387,12 @@ packages:
     name: '@polka/url'
     version: 1.0.0-next.21
     dev: true
+
+  registry.npmmirror.com/@popperjs/core/2.11.5:
+    resolution: {integrity: sha512-9X2obfABZuDVLCgPK9aX0a/x4jaOEweTTWE2+9sr0Qqqevj2Uv5XorvusThmc9XGYpS9yI+fhh8RTafBtGposw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@popperjs/core/-/core-2.11.5.tgz}
+    name: '@popperjs/core'
+    version: 2.11.5
+    dev: false
 
   registry.npmmirror.com/@rollup/pluginutils/4.2.1:
     resolution: {integrity: sha512-iKnFXr7NkdZAIHiIWE+BX5ULi/ucVFYWD6TbAV+rZctiRTY2PL6tsIKhoIOaoskiWAkgu+VsbXgUVDNLHf+InQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@rollup/pluginutils/-/pluginutils-4.2.1.tgz}
@@ -4657,6 +4665,14 @@ packages:
     engines: {node: '>=14.0.0'}
     dev: true
 
+  registry.npmmirror.com/tippy.js/6.3.7:
+    resolution: {integrity: sha512-E1d3oP2emgJ9dRQZdf3Kkn0qJgI6ZLpyS5z6ZkY1DF3kaQaBsGZsndEpHwx+eC+tYM41HaSNvNtLx8tU57FzTQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/tippy.js/-/tippy.js-6.3.7.tgz}
+    name: tippy.js
+    version: 6.3.7
+    dependencies:
+      '@popperjs/core': registry.npmmirror.com/@popperjs/core/2.11.5
+    dev: false
+
   registry.npmmirror.com/to-fast-properties/2.0.0:
     resolution: {integrity: sha512-/OaKK0xYrs3DmxRYqL/yDc+FxFUVYhDlXMhRmv3z915w2HF1tnN1omB354j8VUGO/hbRzyD6Y3sA7v7GS/ceog==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/to-fast-properties/-/to-fast-properties-2.0.0.tgz}
     name: to-fast-properties
@@ -5274,6 +5290,18 @@ packages:
       vue: ^3.2.0
     dependencies:
       '@vue/devtools-api': registry.npmmirror.com/@vue/devtools-api/6.2.0
+      vue: registry.npmmirror.com/vue/3.2.26
+    dev: false
+
+  registry.npmmirror.com/vue-tippy/6.0.0-alpha.60_vue@3.2.26:
+    resolution: {integrity: sha512-tORQ7/jOfrkhsJDBpgi9v7JERIen2GulkZekjNK9hSFWdwQFxxtnCjbGdjATbgxcyG3eckvjlWoh0bCk9ZoEhA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vue-tippy/-/vue-tippy-6.0.0-alpha.60.tgz}
+    id: registry.npmmirror.com/vue-tippy/6.0.0-alpha.60
+    name: vue-tippy
+    version: 6.0.0-alpha.60
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      tippy.js: registry.npmmirror.com/tippy.js/6.3.7
       vue: registry.npmmirror.com/vue/3.2.26
     dev: false
 
