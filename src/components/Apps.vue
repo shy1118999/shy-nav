@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-20 14:31:34
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-07-09 10:10:22
+ * @LastEditTime: 2022-07-21 15:26:13
  * @Description: Apps
 -->
 <script lang="ts" setup>
@@ -169,6 +169,7 @@ const showAppsMenu = ref(false)
 
   border-radius: var(--icon-radius);
   padding: 0 calc(var(--icon-gap-y) / 2) calc(var(--icon-gap-x));
+  transition: 0.3s ease-in-out;
 }
 .app-item-title {
   color: var(--icon-name-color);
