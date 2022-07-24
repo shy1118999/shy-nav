@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-16 22:21:36
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-07-16 17:41:00
+ * @LastEditTime: 2022-07-24 18:54:56
  * @Description:index
 -->
 <script setup lang="ts">
@@ -93,6 +93,8 @@ function handleCreateApp(data: any) {
     ...data,
   })
   showCreateApp.value = false
+  // eslint-disable-next-line no-self-assign
+  apps.value = apps.value
 }
 
 function handleCreatePage(data: any) {
@@ -100,31 +102,52 @@ function handleCreatePage(data: any) {
   showCreateApp.value = false
 }
 
+enum Mode {
+  Simple,
+  Normal,
+  Terminal,
+}
+const mode = ref<Mode>(Mode.Normal)
+
+function handleChangeMode() {
+  if (mode.value === Mode.Simple)
+    mode.value = Mode.Normal
+  else
+    mode.value = Mode.Simple
+}
+
 </script>
 
 <template>
-  <div data-shy-type="main" select-none w-full h-full flex flex-col>
-    <!-- 时间 -->
-    <AppDateTime />
-    <!-- 搜索 -->
-    <AppSearch />
-    <!-- apps -->
-    <Apps />
-    <!-- 底部Tab -->
-    <AppTab v-if="appItemSetting.showTab" />
-    <!-- <AppPagination v-else /> -->
-    <AppSentences v-else />
-    <MenuList ref="menuRef" @menu-click="handleMenuClick" />
-    <Drawer :show="showSettingMenu" @close="showSettingMenu = false">
-      <SettingMenu />
-    </Drawer>
-    <Drawer :show="showCreateApp" @close="showCreateApp = false">
-      <CreateNewApp @submit="handleCreateApp" @create-page="handleCreatePage" />
-    </Drawer>
-    <Drawer :show="showEditApp" @close="showEditApp = false">
-      <EditApp :id="editAppId" @close="showEditApp = false" />
-    </Drawer>
-  </div>
+  <Transition>
+    <div data-shy-type="main" select-none w-full h-full flex flex-col transition-all duration-1000 :class="{'pt-40':mode === Mode.Simple}">
+      <!-- 时间 -->
+      <AppDateTime @click-time="handleChangeMode" />
+      <!-- 搜索 -->
+      <AppSearch />
+      <template v-if="mode === Mode.Normal">
+        <!-- apps -->
+        <Apps />
+        <!-- 底部Tab -->
+        <AppTab v-if="appItemSetting.showTab" />
+        <!-- <AppPagination v-else /> -->
+        <AppSentences v-else />
+      </template>
+      <template v-else>
+        <AppSentences />
+      </template>
+      <MenuList ref="menuRef" @menu-click="handleMenuClick" />
+      <Drawer :show="showSettingMenu" @close="showSettingMenu = false">
+        <SettingMenu />
+      </Drawer>
+      <Drawer :show="showCreateApp" @close="showCreateApp = false">
+        <CreateNewApp @submit="handleCreateApp" @create-page="handleCreatePage" />
+      </Drawer>
+      <Drawer :show="showEditApp" @close="showEditApp = false">
+        <EditApp :id="editAppId" @close="showEditApp = false" />
+      </Drawer>
+    </div>
+  </Transition>
 </template>
 <style>
 /* body{
@@ -136,4 +159,14 @@ function handleCreatePage(data: any) {
   --icon-name-color: v-bind(appItemSetting.iconNameColor);
   --icon-name-display: v-bind(appItemSetting.showIconName ? 'block' : 'none');
 } */
+/* 下面我们会解释这些 class 是做什么的 */
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
 </style>

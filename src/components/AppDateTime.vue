@@ -1,3 +1,10 @@
+<!--
+ * @Author: shaohang-shy
+ * @Date: 2022-03-20 14:27:24
+ * @LastEditors: shaohang-shy
+ * @LastEditTime: 2022-07-24 18:30:05
+ * @Description: AppDateTime
+-->
 <script lang="ts" setup >
 
 const now = useNow()
@@ -19,6 +26,7 @@ const weekZh = {
   5: '星期五',
   6: '星期六',
 }
+const emits = defineEmits(['click-time'])
 </script>
 <template>
   <div
@@ -27,6 +35,7 @@ const weekZh = {
     text-7xl
     font-mono
     pt-10
+    @click.stop="emits('click-time')"
   >
     {{ now.getHours().toString().padStart(2, '0') }}:{{ now.getMinutes().toString().padStart(2, '0') }}:{{ now.getSeconds().toString().padStart(2, '0') }}
   </div>

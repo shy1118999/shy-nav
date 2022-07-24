@@ -11,9 +11,12 @@
   },
   "dependencies": {
     "@vueuse/core": "^8.9.1",
+    "@vueuse/rxjs": "^8.9.4",
     "animate.css": "^4.1.1",
     "axios": "^0.26.1",
     "dayjs": "^1.11.3",
+    "dexie": "^3.2.2",
+    "rxjs": "^7.5.6",
     "sass": "^1.53.0",
     "swiper": "^8.3.0",
     "uuid": "^8.3.2",

@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2021-12-28 23:51:07
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-04-10 22:29:50
+ * @LastEditTime: 2022-07-23 12:37:45
  * @Description: AppItem
 -->
 <script lang="ts" setup>
@@ -18,7 +18,8 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 function handleClick() {
-  window.open(props.url, '_blank')
+  if (props.url)
+    window.open(props.url, '_blank')
 }
 
 </script>

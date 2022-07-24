@@ -2,14 +2,14 @@
  * @Author: shaohang-shy
  * @Date: 2022-04-07 21:22:34
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-07-09 21:46:03
+ * @LastEditTime: 2022-07-24 18:44:39
  * @Description:
 -->
 <script setup lang="ts">
 import { useTippy } from 'vue-tippy'
 import 'tippy.js/dist/tippy.css' // optional for styling
 
-const sentence = ref('')
+const sentence = ref('点击复制，右键切换。')
 const from = ref('')
 const fromWho = ref('')
 

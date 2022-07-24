@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-25 22:32:22
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-04-10 22:30:22
+ * @LastEditTime: 2022-07-22 10:39:00
  * @Description:
 -->
 <script setup lang="ts">
@@ -134,6 +134,7 @@ function handleEnterTitle(e: KeyboardEvent) {
       h-full
       p-0
       bg="white/50"
+      dark:bg="gray/30"
       flex
       flex-wrap
       items-start

@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-11 17:55:49
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-05-27 11:12:55
+ * @LastEditTime: 2022-07-24 18:32:33
  * @Description:
 -->
 <script setup lang="ts">
@@ -41,3 +41,19 @@ watchEffect(() => {
     <router-view />
   </main>
 </template>
+<style>
+
+.nested-enter-active,
+.nested-leave-active {
+  transition: all 0.3s ease-in-out;
+}
+.nested-leave-active {
+  transition-delay: 0;
+}
+
+.nested-enter-from,
+.nested-leave-to {
+  transform: translateX(30px);
+  opacity: 0;
+}
+</style>

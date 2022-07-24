@@ -22,7 +22,9 @@ declare module 'vue' {
     HistoryToday: typeof import('./src/components/apps/HistoryToday.vue')['default']
     MenuList: typeof import('./src/components/MenuList.vue')['default']
     SettingMenu: typeof import('./src/components/SettingMenu.vue')['default']
+    ShyCheckbox: typeof import('./src/components/ShyCheckbox.vue')['default']
     ShyDialog: typeof import('./src/components/ShyDialog.vue')['default']
+    TodoList: typeof import('./src/components/apps/TodoList.vue')['default']
   }
 }
 
