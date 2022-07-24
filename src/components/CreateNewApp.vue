@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-27 19:02:08
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-07-16 17:56:05
+ * @LastEditTime: 2022-07-22 16:56:38
  * @Description:
 -->
 <script setup lang="ts">
@@ -86,6 +86,15 @@ function handleAddCalendar() {
     column: 1,
     row: 1,
     component: 'calendar',
+  })
+}
+function handleAddTodoList() {
+  emit('submit', {
+    title: '代办事项',
+    id: uuid(),
+    column: 1,
+    row: 1,
+    component: 'todoList',
   })
 }
 const inputPageName = ref('')
@@ -259,6 +268,9 @@ function handleSubmitPage() {
   <div w-full flex justify-start>
     <button btn m-2 @click="handleAddCalendar">
       添加日历
+    </button>
+    <button btn m-2 @click="handleAddTodoList">
+      添加Todo
     </button>
   </div>
   <div h-0 w-full border-t border-dashed />

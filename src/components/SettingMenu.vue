@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-23 22:36:24
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-07-16 17:26:21
+ * @LastEditTime: 2022-07-23 13:58:38
  * @Description: setting
 -->
 <script setup lang="ts">
@@ -12,6 +12,23 @@ import backgroundHistory from '~/storage/backgroundHistory'
 const bgType = ref(background.value.type)
 const bgSrc = ref(background.value.src)
 const bgColor = ref(background.value.backgroundColor)
+
+const colors = [
+  { name: '红色', key: 'red', value: '#db2828' },
+  { name: '橘黄色', key: 'orange', value: '#f2711c' },
+  { name: '黄色', key: 'yellow', value: '#fbbd08' },
+  { name: '橄榄绿色', key: 'olive', value: '#b5cc18' },
+  { name: '绿色', key: 'green', value: '#21ba45' },
+  { name: '茶绿色', key: 'teal', value: '#00b5ad' },
+  { name: '蓝色', key: 'blue', value: '#2185d0' },
+  { name: '紫罗兰色', key: 'violet', value: '#6435c9' },
+  { name: '紫色', key: 'purple', value: '#a333c8' },
+  { name: '粉色', key: 'pink', value: '#e03997' },
+  { name: '褐色', key: 'brown', value: '#a5673f' },
+  { name: '灰色', key: 'grey', value: '#767676' },
+  { name: '黑色', key: 'black', value: '#1b1c1d' },
+  { name: '白色', key: 'white', value: '#ffffff' },
+]
 
 function handleSubmitBg() {
   background.value.type = bgType.value
@@ -154,9 +171,12 @@ function handleImportSetting() {
     </div>
   </div>
   <!-- 图标名称：颜色 -->
-  <!-- <div>
-        图标颜色
-      </div> -->
+  <div my-2 w-full flex items-center justify-between rounded-xl bg="white/20" p-3>
+    图标名称颜色
+    <div flex flex-row flex-wrap w-50>
+      <div v-for="color in colors" :key="color.value" m-1 w-5 h-5 rounded-full cursor-pointer :style="{ background: color.value }" @click="appItemSetting.iconNameColor = color.value" />
+    </div>
+  </div>
   <!-- 图标大小  -->
   <div my-2 w-full flex items-center justify-between rounded-xl bg="white/20" p-3 leading-35px>
     <div>图标大小</div>
