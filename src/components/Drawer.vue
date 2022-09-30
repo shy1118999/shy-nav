@@ -2,14 +2,14 @@
  * @Author: shaohang-shy
  * @Date: 2022-07-16 17:15:48
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-07-16 17:19:34
+ * @LastEditTime: 2022-09-30 17:47:23
  * @Description: Drawer
 -->
 <script setup lang="ts">
-const emit = defineEmits(['close'])
 const props = withDefaults(defineProps<{
   show: boolean
 }>(), {})
+const emit = defineEmits(['close'])
 function handleClickMask(e: MouseEvent) {
   e.preventDefault()
   e.stopPropagation()
@@ -20,6 +20,7 @@ function noop(e: MouseEvent) {
   e.stopPropagation()
 }
 </script>
+
 <template>
   <Transition :duration="550" name="nested">
     <div

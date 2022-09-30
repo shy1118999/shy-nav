@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-16 22:21:36
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-07-24 18:54:56
+ * @LastEditTime: 2022-09-30 17:55:35
  * @Description:index
 -->
 <script setup lang="ts">
@@ -60,8 +60,9 @@ function handleMenuClick(x: { type: string; data: DOMStringMap }) {
 
 function handleDeleteApp(data: DOMStringMap) {
   const { id } = data
-  const index = apps.value[activeIndex.value].list.findIndex(item => item.id == id)
-  if (index === -1) return
+  const index = apps.value[activeIndex.value].list.findIndex(item => item.id === Number(id))
+  if (index === -1)
+    return
   apps.value[activeIndex.value].list.splice(index, 1)
 }
 
@@ -115,12 +116,11 @@ function handleChangeMode() {
   else
     mode.value = Mode.Simple
 }
-
 </script>
 
 <template>
   <Transition>
-    <div data-shy-type="main" select-none w-full h-full flex flex-col transition-all duration-1000 :class="{'pt-40':mode === Mode.Simple}">
+    <div data-shy-type="main" select-none w-full h-full flex flex-col transition-all duration-1000 :class="{ 'pt-40': mode === Mode.Simple }">
       <!-- 时间 -->
       <AppDateTime @click-time="handleChangeMode" />
       <!-- 搜索 -->
@@ -149,6 +149,7 @@ function handleChangeMode() {
     </div>
   </Transition>
 </template>
+
 <style>
 /* body{
   --icon-size: v-bind(`${appItemSetting.iconSize}px`);

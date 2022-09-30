@@ -10,6 +10,7 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@types/uuid": "^8.3.4",
     "@vueuse/core": "^8.9.4",
     "@vueuse/rxjs": "^8.9.4",
     "animate.css": "^4.1.1",
@@ -26,8 +27,8 @@
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.18.9",
     "@iconify-json/carbon": "^1.1.8",
+    "@shy1118/eslint-config": "^1.0.5",
     "@types/node": "^17.0.45",
     "@unocss/reset": "^0.27.6",
     "@vitejs/plugin-vue": "^2.3.4",
@@ -45,6 +46,6 @@
     "vue-tsc": "^0.32.1"
   },
   "eslintConfig": {
-    "extends": "@antfu"
+    "extends": "@shy1118"
   }
 }

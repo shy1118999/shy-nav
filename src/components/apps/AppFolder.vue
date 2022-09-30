@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-25 22:32:22
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-09-30 16:44:22
+ * @LastEditTime: 2022-09-30 17:46:16
  * @Description:
 -->
 <script setup lang="ts">
@@ -23,19 +23,17 @@ const props = withDefaults(defineProps<Props>(), {
   title: '文件夹',
 })
 const folderSize = computed(() => {
-  if (props.row === 2 && props.column === 2) return 'big'
-  else if (props.row === 2) return 'middle'
+  if (props.row === 2 && props.column === 2)
+    return 'big'
+  else if (props.row === 2)
+    return 'middle'
   else return 'small'
 })
 function handleClick(item: any) {
   window.open(item.url, '_blank')
 }
-const emit = defineEmits(['update:title'])
 const showAllApps = ref(false)
-function noop(e: MouseEvent) {
-  e.preventDefault()
-  e.stopPropagation()
-}
+
 function handleClickMask(e: MouseEvent) {
   e.preventDefault()
   e.stopPropagation()
@@ -54,7 +52,7 @@ function handleEnterTitle(e: KeyboardEvent) {
   let y = 0
   for (let i = 0; i < apps.value.length; i++) {
     for (let j = 0; j < apps.value[i].list.length; j++) {
-      if (apps.value[i].list[j].id == id) {
+      if (apps.value[i].list[j].id === id) {
         x = i
         y = j
         break
@@ -64,6 +62,7 @@ function handleEnterTitle(e: KeyboardEvent) {
   apps.value[x].list[y].title = (e.target as HTMLInputElement).value
 }
 </script>
+
 <template>
   <div
     relative
@@ -78,11 +77,11 @@ function handleEnterTitle(e: KeyboardEvent) {
     class="app-item-icon"
     @click.stop="handleShowAllApps"
   >
-    <div v-if="folderSize == 'small'" data-shy-type="app-folder" :data-id="props.id" w-full h-full>
+    <div v-if="folderSize === 'small'" data-shy-type="app-folder" :data-id="props.id" w-full h-full>
       <img src="../../asset/icon/folder.png" title="Folder" block object-cover w-full h-full>
     </div>
     <div
-      v-else-if="folderSize == 'middle'"
+      v-else-if="folderSize === 'middle'"
       data-shy-type="app-folder"
       :data-id="props.id"
       w-full
@@ -233,6 +232,7 @@ function handleEnterTitle(e: KeyboardEvent) {
     </Teleport>
   </div>
 </template>
+
 <style scoped>
 .nested-enter-active,
 .nested-leave-active {
@@ -313,5 +313,4 @@ function handleEnterTitle(e: KeyboardEvent) {
 .dark .app-item-icon:hover {
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
 }
-
 </style>

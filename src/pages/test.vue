@@ -2,14 +2,14 @@
  * @Author: shaohang-shy
  * @Date: 2022-05-28 08:58:12
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-07-23 12:38:46
+ * @LastEditTime: 2022-09-30 17:56:28
  * @Description: Test
 -->
 <script setup lang="ts">
-import { liveQuery } from 'dexie'
+// import { liveQuery } from 'dexie'
 import type { Note } from '../db'
 import { db } from '../db'
-import TodoList from '~/components/apps/TodoList.vue'
+// import TodoList from '~/components/apps/TodoList.vue'
 
 const dialog = ref<HTMLDialogElement | null>(null)
 function showDialog() {
@@ -46,8 +46,8 @@ db.notes.orderBy('createdAt').toArray().then((result) => {
 })
 
 const checked = ref(false)
-
 </script>
+
 <template>
   <div p-10>
     Test
@@ -72,6 +72,7 @@ const checked = ref(false)
     <input type="date" bg-transparent>
   </div>
 </template>
+
 <style>
 @keyframes slideDown {
   from {

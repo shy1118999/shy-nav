@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-04-11 20:30:16
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-04-11 21:04:32
+ * @LastEditTime: 2022-09-30 17:56:07
  * @Description:
 -->
 <script setup lang="ts">
@@ -44,6 +44,7 @@ function formatData(data: HistoryToday) {
   localStorage.setItem(`shy-nav-his_${month}`, JSON.stringify(data))
 }
 </script>
+
 <template>
   <ul id="list" class="container" text-54px>
     <li v-for="(item, index) in list" :key="index">
@@ -57,6 +58,7 @@ function formatData(data: HistoryToday) {
     </li>
   </ul>
 </template>
+
 <style scoped>
 html,
 body {

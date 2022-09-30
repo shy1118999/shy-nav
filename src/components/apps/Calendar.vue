@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-05-26 19:15:13
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-08-03 10:25:37
+ * @LastEditTime: 2022-09-30 17:50:51
  * @Description: Calendar
 -->
 <script setup lang="ts">
@@ -75,8 +75,8 @@ const currentCalendar = computed(() => {
 const currentWeeks = computed(() => {
   return currentCalendar.value.weeks
 })
-
 </script>
+
 <template>
   <!-- 中：星期+日+年月+农历 -->
   <!-- 大：星期+日+年月+农历 + 日历 -->
@@ -142,7 +142,7 @@ const currentWeeks = computed(() => {
             <div v-else-if="day.lunar.Term">
               {{ day.lunar.Term }}
             </div>
-            <div v-else-if="day.lunar.lDay == 1">
+            <div v-else-if="day.lunar.lDay === 1">
               {{ day.lunar.IMonthCn }}
             </div>
             <div v-else>
@@ -185,7 +185,7 @@ const currentWeeks = computed(() => {
                     <div v-else-if="day.lunar.Term">
                       {{ day.lunar.Term }}
                     </div>
-                    <div v-else-if="day.lunar.lDay == 1">
+                    <div v-else-if="day.lunar.lDay === 1">
                       {{ day.lunar.IMonthCn }}
                     </div>
                     <div v-else>

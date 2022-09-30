@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-20 14:31:34
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-09-30 17:26:55
+ * @LastEditTime: 2022-09-30 17:48:33
  * @Description: Apps
 -->
 <script lang="ts" setup>
@@ -22,7 +22,6 @@ const handleToPage = (id: number) => {
 }
 
 const showAppsMenu = ref(false)
-
 </script>
 
 <template>
@@ -35,45 +34,45 @@ const showAppsMenu = ref(false)
     flex-1
     w-full
     :initial-slide="activeIndex"
-    :modules="[Pagination,Keyboard,Mousewheel]"
+    :modules="[Pagination, Keyboard, Mousewheel]"
     @swiper="x => swiperController = x"
-    @slideChange="e => activeIndex = e.activeIndex"
+    @slide-change="e => activeIndex = e.activeIndex"
   >
     <swiper-slide v-for="item in apps" :key="item.id" overflow-auto>
-        <draggable
-          :list="item.list"
-          item-key="id"
-          force-fallback="true"
-          group="apps"
-          :delay="50"
-          :touch-start-threshold="5"
-          animation="300"
-          class="app-grid h-full max-w-1200px mx-auto grid p-5 justify-center grid-flow-row-dense pb-100px" 
-        >
-          <template #item="{ element }">
-            <div
-              :data-item="element.id"
-              class="app-item swiper-no-swiping"
-              :style="{
-                '--cell-column': element.column,
-                '--cell-row': element.row,
-              }"
-            >
-              <!-- 实际组件 -->
-              <component
-                :is="element.component"
-                data-shy-type="app-item"
-                :data-id="element.id"
-                :data-url="element.url"
-                v-bind="element"
-              />
-              <!-- 标题 -->
-              <div class="app-item-title" truncate>
-                {{ element.title }}
-              </div>
+      <draggable
+        :list="item.list"
+        item-key="id"
+        force-fallback="true"
+        group="apps"
+        :delay="50"
+        :touch-start-threshold="5"
+        animation="300"
+        class="app-grid h-full max-w-1200px mx-auto grid p-5 justify-center grid-flow-row-dense pb-100px"
+      >
+        <template #item="{ element }">
+          <div
+            :data-item="element.id"
+            class="app-item swiper-no-swiping"
+            :style="{
+              '--cell-column': element.column,
+              '--cell-row': element.row,
+            }"
+          >
+            <!-- 实际组件 -->
+            <component
+              :is="element.component"
+              data-shy-type="app-item"
+              :data-id="element.id"
+              :data-url="element.url"
+              v-bind="element"
+            />
+            <!-- 标题 -->
+            <div class="app-item-title" truncate>
+              {{ element.title }}
             </div>
-          </template>
-        </draggable>
+          </div>
+        </template>
+      </draggable>
     </swiper-slide>
   </swiper>
   <transition name="fade">

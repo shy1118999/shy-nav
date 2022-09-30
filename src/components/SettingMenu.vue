@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-23 22:36:24
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-07-23 13:58:38
+ * @LastEditTime: 2022-09-30 17:53:34
  * @Description: setting
 -->
 <script setup lang="ts">
@@ -92,8 +92,8 @@ function handleImportSetting() {
   }
   input.click()
 }
-
 </script>
+
 <template>
   <!-- 设置导入/导出 -->
   <p w-full text-left p-3>
@@ -126,7 +126,7 @@ function handleImportSetting() {
   <input v-model="bgSrc" placeholder="Background Image Url" my-2 w-full flex items-center justify-between rounded-xl bg="white/20" p-3 leading-35px>
   <div my-2 w-full flex items-center justify-between rounded-xl bg="white/20" p-3 leading-35px>
     <div>背景默认颜色</div>
-    <input v-model="bgColor" z-9999999 w-5 h-5 type="color" @change="() => {}" @click="()=>{}">
+    <input v-model="bgColor" z-9999999 w-5 h-5 type="color" @change="() => {}" @click="() => {}">
   </div>
   <div w-full flex justify-end>
     <button btn m-2 @click="handleResetBg">
@@ -185,7 +185,7 @@ function handleImportSetting() {
       {{ `${appItemSetting.iconSize}px` }}
     </div>
   </div>
-  <!-- 图标圆角-->
+  <!-- 图标圆角 -->
   <div my-2 w-full flex items-center justify-between rounded-xl bg="white/20" p-3 leading-35px>
     <div>图标圆角</div>
     <input v-model="appItemSetting.iconRadius" flex-1 mx-5 type="range" min="0" max="36" step="1">
@@ -215,6 +215,7 @@ function handleImportSetting() {
     </div>
   </div>
 </template>
+
 <style>
 ::-webkit-color-swatch-wrapper {
   z-index: 99999999;

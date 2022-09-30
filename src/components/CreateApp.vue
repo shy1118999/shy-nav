@@ -2,13 +2,13 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-26 15:38:32
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-03-26 16:07:27
+ * @LastEditTime: 2022-09-30 17:47:13
  * @Description: create app
 -->
 <script setup lang="ts">
 import allApps from '~/config/apps'
-const apps = ref([...allApps])
 const emit = defineEmits(['close'])
+const apps = ref([...allApps])
 function noop(e: MouseEvent) {
   e.preventDefault()
   e.stopPropagation()
@@ -24,6 +24,7 @@ function handleInput(e: any) {
   })
 }
 </script>
+
 <template>
   <div
     fixed
@@ -64,7 +65,7 @@ function handleInput(e: any) {
         <input h-60px p-2 color="black/50" text-3xl w-full leading-60px bg-transparent @input="handleInput">
       </div>
       <div
-        v-for="item,index in apps"
+        v-for="item, index in apps"
         :key="index"
         w-full
         my-2

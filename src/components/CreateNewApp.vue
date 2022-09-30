@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-27 19:02:08
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-07-22 16:56:38
+ * @LastEditTime: 2022-09-30 17:53:43
  * @Description:
 -->
 <script setup lang="ts">
@@ -138,8 +138,8 @@ function handleSubmitPage() {
     list: [],
   })
 }
-
 </script>
+
 <template>
   <!-- 添加页面 -->
   <h3 text-left text-xl my-2 font-bold>
@@ -163,9 +163,9 @@ function handleSubmitPage() {
     <!--  -->
     <div
       v-for="item in pageIcons" :key="item" p-2
-      :class="{'bg-white': item === inputPageIcon}"
+      :class="{ 'bg-white': item === inputPageIcon }"
       rounded-xl
-      @click="inputPageIcon=item"
+      @click="inputPageIcon = item"
     >
       <svg class="icon" text-3xl aria-hidden="true">
         <use :xlink:href="item" />

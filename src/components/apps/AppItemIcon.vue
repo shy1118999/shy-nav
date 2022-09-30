@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2021-12-28 23:51:07
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-07-23 12:37:45
+ * @LastEditTime: 2022-09-30 17:56:15
  * @Description: AppItem
 -->
 <script lang="ts" setup>
@@ -21,8 +21,8 @@ function handleClick() {
   if (props.url)
     window.open(props.url, '_blank')
 }
-
 </script>
+
 <template>
   <div
     relative
@@ -40,6 +40,7 @@ function handleClick() {
     <img :src="props.icon" :title="props.title" block object-cover w-full h-full>
   </div>
 </template>
+
 <style scoped>
 .app-item-icon {
   transition: all 0.2s;

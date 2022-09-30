@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-07-22 16:45:36
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-07-24 17:54:01
+ * @LastEditTime: 2022-09-30 17:55:16
  * @Description: TodoList
 -->
 <script setup lang="ts">
@@ -17,14 +17,14 @@ interface Props {
   title?: string
 }
 
-const todoTitleInputRef = ref<HTMLInputElement>()
-
 const props = withDefaults(defineProps<Props>(), {
   id: 0,
   row: 1,
   column: 1,
   title: '待办事项',
 })
+
+const todoTitleInputRef = ref<HTMLInputElement>()
 
 const typeTypeColorMap = computed(() => {
   const map: Record<string, string> = {}
@@ -79,8 +79,8 @@ function handleAddTodo() {
 function handleDeleteTodo(id: string) {
   list.value = list.value.filter(item => item.id !== id)
 }
-
 </script>
+
 <template>
   <div
     cursor-pointer w-full h-full from-cyan-100 to-blue-200 bg-gradient-to-br dark:from-cyan-800 dark:to-blue-900
@@ -146,7 +146,7 @@ function handleDeleteTodo(id: string) {
                     @change="item.checked = !item.checked"
                   />
                   <div flex-1 flex flex-col>
-                    <input v-model="item.title" :class="{ 'line-through': item.checked , 'color-gray':item.checked }" w-full bg-transparent>
+                    <input v-model="item.title" :class="{ 'line-through': item.checked, 'color-gray': item.checked }" w-full bg-transparent>
                     <input v-model="item.date" w-130px text-sm color-gray type="date" bg-transparent>
                   </div>
                   <svg

@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-07-16 17:10:40
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-07-16 18:06:56
+ * @LastEditTime: 2022-09-30 17:55:20
  * @Description: EditApp
 -->
 <script setup lang="ts">
@@ -20,7 +20,7 @@ const inputTitle = ref('')
 const inputIcon = ref('')
 
 watch(() => props.id, (id) => {
-  const app = apps.value[activeIndex.value].list.find(item => item.id == id)
+  const app = apps.value[activeIndex.value].list.find(item => item.id === id)
   inputUrl.value = app?.url ?? ''
   inputTitle.value = app?.title ?? ''
   inputIcon.value = app?.icon ?? ''
@@ -64,7 +64,8 @@ function handleSubmit() {
     }
   }
   const item = apps.value[x].list[y]
-  if (!item) return
+  if (!item)
+    return
   if (inputUrl.value.trim() !== '')
     item.url = inputUrl.value
 
@@ -75,8 +76,8 @@ function handleSubmit() {
     item.icon = inputIcon.value
   emit('close')
 }
-
 </script>
+
 <template>
   <!-- 地址 -->
   <p text-left>

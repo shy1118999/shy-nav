@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-05-27 13:39:04
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-05-27 20:16:02
+ * @LastEditTime: 2022-09-30 17:55:10
  * @Description: timestamp
 -->
 <!-- https://shy-nav.shaohang.xin/nav-icons/timestamp.svg -->
@@ -108,8 +108,8 @@ const outputDate = computed(() => {
 function handleChangeDateType(e: Event) {
   dateBase.value = (e.target as HTMLSelectElement).value === 's' ? 1000 : 1
 }
-
 </script>
+
 <template>
   <div class="min-w-1200px p-20 m-auto">
     <h1 text-2xl text-left>
@@ -199,6 +199,7 @@ function handleChangeDateType(e: Event) {
     </div>
   </div>
 </template>
+
 <style scoped>
 input {
   padding: 0 10px;

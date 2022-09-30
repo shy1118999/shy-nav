@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-04-07 21:22:34
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-07-24 18:44:39
+ * @LastEditTime: 2022-09-30 17:47:30
  * @Description:
 -->
 <script setup lang="ts">
@@ -31,7 +31,7 @@ fetch('https://v1.hitokoto.cn/?c=d&c=i&encode=json&lang=cn')
 const source = computed(() => {
   return `${sentence.value}\n--${from.value}${fromWho.value ? `-${fromWho.value}` : ''}`
 })
-const { copy, copied } = useClipboard({ source })
+const { copy } = useClipboard({ source })
 
 function copyThis() {
   copy()
@@ -53,6 +53,7 @@ function getNew(e: Event | undefined) {
 }
 getNew(undefined)
 </script>
+
 <template>
   <div flex w-full justify-center>
     <div
@@ -62,7 +63,7 @@ getNew(undefined)
       cursor-pointer
       relative
       class="sentence"
-      @click.stop="()=>{copyThis();}"
+      @click.stop="() => { copyThis(); }"
       @contextmenu.stop="getNew"
     >
       <div title="点击左键复制，右键切换">
@@ -74,6 +75,7 @@ getNew(undefined)
     </div>
   </div>
 </template>
+
 <style scoped>
 .from {
     opacity: 0;

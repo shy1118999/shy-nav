@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-20 14:29:50
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-07-25 13:41:20
+ * @LastEditTime: 2022-09-30 17:56:00
  * @Description: AppSearch
 -->
 <script lang="ts" setup>
@@ -36,8 +36,8 @@ function search() {
 //   //   console.log(result)
 //   // })
 // }, { debounce: 1000, maxWait: 1000 })
-
 </script>
+
 <template>
   <div
     flex="~" justify-center items-center md:mx-20 lg:mx-30 xl:mx-100 my-10 rounded-50 h-15 bg-white bg-opacity-10
@@ -85,6 +85,7 @@ function search() {
     </button>
   </div>
 </template>
+
 <style scoped>
 .bounce-enter-active {
   animation: bounce-in 0.3s;
