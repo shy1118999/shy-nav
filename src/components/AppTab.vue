@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-22 23:02:12
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-04-05 14:33:33
+ * @LastEditTime: 2022-09-30 16:59:35
  * @Description:
 -->
 <script setup lang="ts">
@@ -10,28 +10,23 @@ import draggable from 'vuedraggable'
 import tabApps from '~/storage/tabApps'
 </script>
 <template>
-  <div flex items-center justify-center p-10px>
     <draggable
       :list="tabApps"
-      tag="transition-group"
       item-key="id"
       force-fallback="true"
       group="tab"
       :delay="50"
       :touch-start-threshold="5"
       animation="300"
+      class="flex items-center justify-center p-10px"
     >
       <template #item="{ element }">
         <div
           data-shy-type="tab-item"
           :data-id="element.id"
           :data-url="element.url"
-          relative
           :data-item="element.id"
-          w-80px
-          h-80px
-          m-10px
-          class="app-item"
+          class="relative app-item"
         >
           <!-- 实际组件 -->
           <component :is="element.component" v-bind="element" />
@@ -42,7 +37,6 @@ import tabApps from '~/storage/tabApps'
         </div>
       </template>
     </draggable>
-  </div>
 </template>
 
 <style scoped>

@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-20 14:31:34
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-07-21 15:26:13
+ * @LastEditTime: 2022-09-30 17:26:55
  * @Description: Apps
 -->
 <script lang="ts" setup>
@@ -40,30 +40,18 @@ const showAppsMenu = ref(false)
     @slideChange="e => activeIndex = e.activeIndex"
   >
     <swiper-slide v-for="item in apps" :key="item.id" overflow-auto>
-      <div
-        class="app-grid"
-        absolute
-        max-w-1200px
-        mx-auto
-        grid
-        p-5
-        relative
-        justify-center
-        grid-flow-row-dense
-        pb-100px
-      >
         <draggable
           :list="item.list"
-          tag="transition-group"
           item-key="id"
+          force-fallback="true"
           group="apps"
           :delay="50"
           :touch-start-threshold="5"
           animation="300"
+          class="app-grid h-full max-w-1200px mx-auto grid p-5 justify-center grid-flow-row-dense pb-100px" 
         >
           <template #item="{ element }">
             <div
-              relative
               :data-item="element.id"
               class="app-item swiper-no-swiping"
               :style="{
@@ -86,7 +74,6 @@ const showAppsMenu = ref(false)
             </div>
           </template>
         </draggable>
-      </div>
     </swiper-slide>
   </swiper>
   <transition name="fade">
@@ -169,12 +156,17 @@ const showAppsMenu = ref(false)
 
   border-radius: var(--icon-radius);
   padding: 0 calc(var(--icon-gap-y) / 2) calc(var(--icon-gap-x));
-  transition: 0.3s ease-in-out;
+  /* transition: 0.3s ease-in-out; */
 }
 .app-item-title {
   color: var(--icon-name-color);
   padding: 3px 0;
   display: var(--icon-name-display);
   /* line-height: calc(2 * var(--icon-gap-y)); */
+}
+.drag-box {
+  display: flex;
+  flex-direction: row;
+
 }
 </style>

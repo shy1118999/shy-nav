@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-25 22:32:22
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-07-22 10:39:00
+ * @LastEditTime: 2022-09-30 16:44:22
  * @Description:
 -->
 <script setup lang="ts">
@@ -195,7 +195,6 @@ function handleEnterTitle(e: KeyboardEvent) {
               <div max-w="80%" min-h-200px bg="white/30" p-10 rounded-3xl m-auto flex flex-wrap items-center justify-center @click.stop="" @contextmenu.stop="">
                 <draggable
                   :list="props.apps"
-                  tag="transition-group"
                   item-key="id"
                   group="apps"
                   :delay="50"
