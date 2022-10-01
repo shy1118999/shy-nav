@@ -1,16 +1,16 @@
 {
   "name": "shy-nav",
   "description": "A website navigation Site.",
+  "packageManager": "pnpm@6.32.3",
   "homepage": "https://shy-nav.shaohang.xin/#/",
   "repository": {
     "type": "git",
     "url": "https://github.com/shy1118999/shy-nav"
   },
-  "packageManager": "pnpm@6.32.3",
   "scripts": {
     "build": "vite build",
     "dev": "vite",
-    "lint": "eslint .",
+    "lint": "eslint src",
     "typecheck": "vue-tsc --noEmit",
     "preview": "vite preview",
     "test": "vitest"

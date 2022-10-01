@@ -2,10 +2,10 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-20 14:27:24
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-09-30 17:47:43
+ * @LastEditTime: 2022-10-01 20:00:12
  * @Description: AppDateTime
 -->
-<script lang="ts" setup >
+<script lang="ts" setup>
 const emits = defineEmits(['click-time'])
 
 const now = useNow()

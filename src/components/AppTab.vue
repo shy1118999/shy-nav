@@ -2,41 +2,42 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-22 23:02:12
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-09-30 16:59:35
+ * @LastEditTime: 2022-10-01 20:00:07
  * @Description:
 -->
 <script setup lang="ts">
 import draggable from 'vuedraggable'
 import tabApps from '~/storage/tabApps'
 </script>
+
 <template>
-    <draggable
-      :list="tabApps"
-      item-key="id"
-      force-fallback="true"
-      group="tab"
-      :delay="50"
-      :touch-start-threshold="5"
-      animation="300"
-      class="flex items-center justify-center p-10px"
-    >
-      <template #item="{ element }">
-        <div
-          data-shy-type="tab-item"
-          :data-id="element.id"
-          :data-url="element.url"
-          :data-item="element.id"
-          class="relative app-item"
-        >
-          <!-- 实际组件 -->
-          <component :is="element.component" v-bind="element" />
-          <!-- 标题 -->
-          <div class="app-item-title" truncate>
-            {{ element.title }}
-          </div>
+  <draggable
+    :list="tabApps"
+    item-key="id"
+    force-fallback="true"
+    group="tab"
+    :delay="50"
+    :touch-start-threshold="5"
+    animation="300"
+    class="flex items-center justify-center p-10px"
+  >
+    <template #item="{ element }">
+      <div
+        data-shy-type="tab-item"
+        :data-id="element.id"
+        :data-url="element.url"
+        :data-item="element.id"
+        class="relative app-item"
+      >
+        <!-- 实际组件 -->
+        <component :is="element.component" v-bind="element" />
+        <!-- 标题 -->
+        <div class="app-item-title" truncate>
+          {{ element.title }}
         </div>
-      </template>
-    </draggable>
+      </div>
+    </template>
+  </draggable>
 </template>
 
 <style scoped>

@@ -733,8 +733,10 @@ const calendar = {
   toGanZhiYear(lYear: number) {
     let ganKey = (lYear - 3) % 10
     let zhiKey = (lYear - 3) % 12
-    if (ganKey === 0) ganKey = 10 // 如果余数为0则为最后一个天干
-    if (zhiKey === 0) zhiKey = 12 // 如果余数为0则为最后一个地支
+    if (ganKey === 0)
+      ganKey = 10 // 如果余数为0则为最后一个天干
+    if (zhiKey === 0)
+      zhiKey = 12 // 如果余数为0则为最后一个地支
     return this.Gan[ganKey - 1] + this.Zhi[zhiKey - 1]
   },
 
@@ -880,7 +882,7 @@ const calendar = {
    * @return JSON object
    * @eg:console.log(calendar.solar2lunar(1987,11,01));
    */
-  solar2lunar(yPara: number|string, mPara: number|string, dPara: number|string) {
+  solar2lunar(yPara: number | string, mPara: number | string, dPara: number | string) {
     let y = parseInt(`${yPara}`)
     let m = parseInt(`${mPara}`)
     let d = parseInt(`${dPara}`)
@@ -1055,7 +1057,7 @@ const calendar = {
    * @return JSON object
    * @eg:console.log(calendar.lunar2solar(1987,9,10));
    */
-  lunar2solar(y: number|string, m: number|string, d: number|string, isLeapMonth: boolean) {
+  lunar2solar(y: number | string, m: number | string, d: number | string, isLeapMonth: boolean) {
     y = parseInt(`${y}`)
     m = parseInt(`${m}`)
     d = parseInt(`${d}`)

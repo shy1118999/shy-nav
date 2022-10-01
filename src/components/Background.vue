@@ -2,13 +2,13 @@
  * @Author: shaohang-shy
  * @Date: 2021-12-28 23:38:53
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-04-04 18:43:35
+ * @LastEditTime: 2022-10-01 19:59:24
  * @Description: Background Component
 -->
 <script lang="ts" setup>
 import background from '~/storage/background'
-
 </script>
+
 <template>
   <div
     fixed
@@ -26,7 +26,7 @@ import background from '~/storage/background'
     }"
   >
     <div
-      v-if="background.type == 'image'"
+      v-if="background.type === 'image'"
       transition-duration-200
       h-full
       w-full
@@ -40,6 +40,7 @@ import background from '~/storage/background'
     />
   </div>
 </template>
+
 <style scoped>
 .app-background {
   position: absolute;

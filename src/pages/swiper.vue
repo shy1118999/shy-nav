@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-20 19:59:54
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-03-20 20:41:56
+ * @LastEditTime: 2022-10-01 19:59:06
  * @Description: swiper
 -->
 <script lang="ts" setup>
@@ -19,27 +19,22 @@ import { Pagination } from 'swiper'
 </script>
 
 <template>
-  <swiper :css-mode="true" :pagination="true" :modules="[Pagination]">
-    <swiper-slide>Slide 1</swiper-slide>
-    <swiper-slide>Slide 2</swiper-slide>
-    <swiper-slide>Slide 3</swiper-slide>
-    <swiper-slide>Slide 4</swiper-slide>
-    <swiper-slide>Slide 5</swiper-slide>
-    <swiper-slide>Slide 6</swiper-slide>
-    <swiper-slide>Slide 7</swiper-slide>
-    <swiper-slide>Slide 8</swiper-slide>
-    <swiper-slide>Slide 9</swiper-slide>
-  </swiper>
+  <Swiper :css-mode="true" :pagination="true" :modules="[Pagination]">
+    <SwiperSlide>Slide 1</SwiperSlide>
+    <SwiperSlide>Slide 2</SwiperSlide>
+    <SwiperSlide>Slide 3</SwiperSlide>
+    <SwiperSlide>Slide 4</SwiperSlide>
+    <SwiperSlide>Slide 5</SwiperSlide>
+    <SwiperSlide>Slide 6</SwiperSlide>
+    <SwiperSlide>Slide 7</SwiperSlide>
+    <SwiperSlide>Slide 8</SwiperSlide>
+    <SwiperSlide>Slide 9</SwiperSlide>
+  </Swiper>
 </template>
-<style>
 
+<style>
 .swiper {
   width: 100%;
   height: 100%;
 }
-
-.swiper-slide {
-
-}
-
 </style>

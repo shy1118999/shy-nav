@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-11 17:55:49
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-07-24 18:32:33
+ * @LastEditTime: 2022-10-01 20:00:20
  * @Description:
 -->
 <script setup lang="ts">
@@ -27,6 +27,7 @@ watchEffect(() => {
   document.body.setAttribute('style', showJson(varStyle.value))
 })
 </script>
+
 <template>
   <Background />
   <Footer fixed top-0 right-6 />
@@ -41,8 +42,8 @@ watchEffect(() => {
     <router-view />
   </main>
 </template>
-<style>
 
+<style>
 .nested-enter-active,
 .nested-leave-active {
   transition: all 0.3s ease-in-out;

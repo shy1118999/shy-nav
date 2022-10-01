@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-20 14:31:34
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-09-30 17:48:33
+ * @LastEditTime: 2022-10-01 19:59:40
  * @Description: Apps
 -->
 <script lang="ts" setup>
@@ -17,7 +17,7 @@ import activeIndex from '~/storage/swiperActiveIndex'
 
 const swiperController = ref<SwiperController>()
 
-const handleToPage = (id: number) => {
+const handleToPage = (id: number | string) => {
   swiperController.value?.slideTo(apps.value.findIndex(x => x.id === id) ?? 0, 500)
 }
 
@@ -25,7 +25,7 @@ const showAppsMenu = ref(false)
 </script>
 
 <template>
-  <swiper
+  <Swiper
     :pagination="false"
     :keyboard="{
       enabled: true,
@@ -38,7 +38,7 @@ const showAppsMenu = ref(false)
     @swiper="x => swiperController = x"
     @slide-change="e => activeIndex = e.activeIndex"
   >
-    <swiper-slide v-for="item in apps" :key="item.id" overflow-auto>
+    <SwiperSlide v-for="item in apps" :key="item.id" overflow-auto>
       <draggable
         :list="item.list"
         item-key="id"
@@ -73,8 +73,8 @@ const showAppsMenu = ref(false)
           </div>
         </template>
       </draggable>
-    </swiper-slide>
-  </swiper>
+    </SwiperSlide>
+  </Swiper>
   <transition name="fade">
     <div
       v-show="showAppsMenu"

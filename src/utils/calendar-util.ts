@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2021-12-29 22:50:57
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-05-26 19:44:02
+ * @LastEditTime: 2022-10-01 19:58:58
  * @Description: calendar util
  */
 import CALENDAR from '~/utils/calendar'
@@ -35,14 +35,13 @@ class Calendar {
     // 每周日期
     this.weeks = {}
 
-    // eslint-disable-next-line no-underscore-dangle
     this._getWeek(this.date.fullDate)
   }
 
   /**
    * 获取任意时间
    */
-  getDate(date: Date|string, AddDayCount = 0, str = 'day') {
+  getDate(date: Date | string, AddDayCount = 0, str = 'day') {
     if (!date)
       date = new Date()
 
@@ -50,7 +49,7 @@ class Calendar {
       date = date.replace(/-/g, '/')
 
     const dd = new Date(date)
-    // eslint-disable-next-line default-case
+
     switch (str) {
       case 'day':
         dd.setDate(dd.getDate() + AddDayCount) // 获取AddDayCount天后的日期
@@ -83,7 +82,7 @@ class Calendar {
   /**
    * 获取上月剩余天数
    */
-  // eslint-disable-next-line no-underscore-dangle
+
   _getLastMonthDays(firstDay: number, full: { fullDate?: string; year: any; month: any; date?: string | number; day?: number }) {
     const dateArr = []
     for (let i = firstDay; i > 0; i--) {
@@ -101,12 +100,11 @@ class Calendar {
   /**
    * 获取本月天数
    */
-  // eslint-disable-next-line no-underscore-dangle
+
   _currentMonthDys(dateData: number, full: { fullDate?: string; year: any; month: any; date?: string | number; day?: number }) {
     const dateArr = []
     const { fullDate } = this.date
     for (let i = 1; i <= dateData; i++) {
-      // eslint-disable-next-line no-unused-vars
       const nowDate = `${full.year}-${
         full.month < 10 ? full.month : full.month
       }-${i < 10 ? `0${i}` : i}`
@@ -175,7 +173,7 @@ class Calendar {
   /**
    * 获取下月天数
    */
-  // eslint-disable-next-line no-underscore-dangle
+
   _getNextMonthDays(surplus: number, full: { fullDate?: string; year: any; month: any; date?: string | number; day?: number }) {
     const dateArr = []
     for (let i = 1; i < surplus + 1; i++) {
@@ -194,7 +192,6 @@ class Calendar {
    * @param {Object} date
    */
   setDate(date: any) {
-    // eslint-disable-next-line no-underscore-dangle
     this._getWeek(date)
   }
 
@@ -284,7 +281,8 @@ class Calendar {
    */
   setMultiple(fullDate: string) {
     const { before, after } = this.multipleStatus
-    if (!this.range) return
+    if (!this.range)
+      return
     if (before && after) {
       this.multipleStatus.before = ''
       this.multipleStatus.after = ''
@@ -334,7 +332,7 @@ class Calendar {
     let canlender: any[] = []
     const surplus
       = 42 - (dates.lastMonthDays.length + dates.currentMonthDys.length)
-    // eslint-disable-next-line no-underscore-dangle
+
     dates.nextMonthDays = this._getNextMonthDays(
       surplus,
       this.getDate(dateData),
