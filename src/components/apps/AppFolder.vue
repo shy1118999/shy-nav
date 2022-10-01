@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-25 22:32:22
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-09-30 17:46:16
+ * @LastEditTime: 2022-10-01 19:14:16
  * @Description:
 -->
 <script setup lang="ts">
@@ -191,40 +191,41 @@ function handleEnterTitle(e: KeyboardEvent) {
                 <input :value="props.title" text-center bg="transparent" rounded-3xl focus:bg="white/50" @click.stop="" @keyup.enter="handleEnterTitle">
               </h3>
               <!-- apps -->
-              <div max-w="80%" min-h-200px bg="white/30" p-10 rounded-3xl m-auto flex flex-wrap items-center justify-center @click.stop="" @contextmenu.stop="">
-                <draggable
-                  :list="props.apps"
-                  item-key="id"
-                  group="apps"
-                  :delay="50"
-                  :touch-start-threshold="5"
-                  animation="300"
-                >
-                  <template #item="{ element }">
-                    <div
-                      class="app-item swiper-no-swiping"
-                      :style="{
-                        '--cell-column': 1,
-                        '--cell-row': 1,
-                      }"
-                      :data-item="element.id"
-                    >
-                      <!-- 实际组件 -->
-                      <component
-                        :is="element.component"
-                        data-shy-type="app-item"
-                        :data-id="element.id"
-                        :data-url="element.url"
-                        v-bind="element"
-                      />
-                      <!-- 标题 -->
-                      <div class="app-item-title" truncate>
-                        {{ element.title }}
-                      </div>
+              <draggable
+                :list="props.apps"
+                item-key="id"
+                group="apps"
+                :delay="50"
+                :touch-start-threshold="5"
+                animation="300"
+                class="min-h-200px p-10 max-w-80% bg-white/30 rounded-3xl m-auto flex flex-wrap items-center justify-center"
+                @click.stop=""
+                @contextmenu.stop=""
+              >
+                <template #item="{ element }">
+                  <div
+                    class="app-item swiper-no-swiping"
+                    :style="{
+                      '--cell-column': 1,
+                      '--cell-row': 1,
+                    }"
+                    :data-item="element.id"
+                  >
+                    <!-- 实际组件 -->
+                    <component
+                      :is="element.component"
+                      data-shy-type="app-item"
+                      :data-id="element.id"
+                      :data-url="element.url"
+                      v-bind="element"
+                    />
+                    <!-- 标题 -->
+                    <div class="app-item-title" truncate>
+                      {{ element.title }}
                     </div>
-                  </template>
-                </draggable>
-              </div>
+                  </div>
+                </template>
+              </draggable>
             </div>
           </div>
         </template>
