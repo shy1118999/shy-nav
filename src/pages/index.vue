@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-16 22:21:36
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-09-30 17:55:35
+ * @LastEditTime: 2022-10-01 19:09:26
  * @Description:index
 -->
 <script setup lang="ts">
@@ -60,7 +60,7 @@ function handleMenuClick(x: { type: string; data: DOMStringMap }) {
 
 function handleDeleteApp(data: DOMStringMap) {
   const { id } = data
-  const index = apps.value[activeIndex.value].list.findIndex(item => item.id === Number(id))
+  const index = apps.value[activeIndex.value].list.findIndex(item => item.id === id)
   if (index === -1)
     return
   apps.value[activeIndex.value].list.splice(index, 1)
