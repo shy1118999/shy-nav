@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-23 22:59:41
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-04-07 21:47:48
+ * @LastEditTime: 2022-10-01 19:31:08
  * @Description:
  */
 export default useStorage('shy-nav-app-item-setting', {
@@ -13,5 +13,5 @@ export default useStorage('shy-nav-app-item-setting', {
   iconNameSize: 14,
   iconNameColor: 'rgba(255,255,255,0.6)',
   showIconName: true,
-  showTab: true,
+  showTab: false,
 })
