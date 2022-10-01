@@ -2,10 +2,11 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-23 12:39:29
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-04-04 18:39:38
+ * @LastEditTime: 2022-10-01 18:38:03
  * @Description:
 -->
 <script setup lang="ts">
+const emit = defineEmits(['menu-click'])
 const showMenu = ref(false)
 const menuStyle = ref({})
 const showType = ref('')
@@ -15,17 +16,21 @@ const { width, height } = useWindowSize()
 
 function open(x: number, y: number, data: DOMStringMap) {
   showType.value = data.shyType ?? ''
-  if (!showType.value) return
+  if (!showType.value)
+    return
   showMenu.value = true
-  if (timer) clearTimeout(timer)
+  if (timer)
+    clearTimeout(timer)
   timer = setTimeout(() => {
     showMenu.value = false
     timer = null
   }, 5000)
   const style: any = {}
-  if (x + 150 > width.value) style.right = '0px'
+  if (x + 150 > width.value)
+    style.right = '0px'
   else style.left = `${x}px`
-  if (y + 150 > height.value) style.bottom = '0px'
+  if (y + 150 > height.value)
+    style.bottom = '0px'
   else style.top = `${y}px`
   menuStyle.value = style
   menuData.value = data
@@ -74,8 +79,8 @@ watchEffect(() => {
   else { window.removeEventListener('click', handleClick) }
 })
 defineExpose({ open })
-const emit = defineEmits(['menu-click'])
 </script>
+
 <template>
   <transition name="bounce">
     <div
@@ -91,7 +96,7 @@ const emit = defineEmits(['menu-click'])
       :style="menuStyle"
     >
       <div
-        v-for="(item,index) in menus[showType]"
+        v-for="(item, index) in menus[showType]"
         :key="index"
         w-full
         py-0
@@ -104,7 +109,7 @@ const emit = defineEmits(['menu-click'])
         hover:bg="white/80"
         hover-color="black/50"
         cursor-pointer
-        @click="emit('menu-click', {type:item.emit, data:menuData})"
+        @click="emit('menu-click', { type: item.emit, data: menuData })"
       >
         <svg class="icon" w-4 h-4 mr-1 aria-hidden="true">
           <use :xlink:href="item.icon" />
