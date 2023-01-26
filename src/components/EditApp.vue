@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-07-16 17:10:40
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-09-30 17:55:20
+ * @LastEditTime: 2022-10-07 16:19:08
  * @Description: EditApp
 -->
 <script setup lang="ts">
@@ -20,7 +20,8 @@ const inputTitle = ref('')
 const inputIcon = ref('')
 
 watch(() => props.id, (id) => {
-  const app = apps.value[activeIndex.value].list.find(item => item.id === id)
+  // eslint-disable-next-line eqeqeq
+  const app = apps.value[activeIndex.value].list.find(item => item.id == id)
   inputUrl.value = app?.url ?? ''
   inputTitle.value = app?.title ?? ''
   inputIcon.value = app?.icon ?? ''
