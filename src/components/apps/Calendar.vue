@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-05-26 19:15:13
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-09-30 17:50:51
+ * @LastEditTime: 2023-04-28 11:29:51
  * @Description: Calendar
 -->
 <script setup lang="ts">
@@ -178,6 +178,7 @@ const currentWeeks = computed(() => {
                     <div v-else text-sm>
                       {{ day.date }}
                     </div>
+                    <!-- eslint-disable-next-line vue/no-constant-condition -->
                     <div v-if="false" />
                     <div v-else-if="day.lunar.festival">
                       {{ day.lunar.festival }}

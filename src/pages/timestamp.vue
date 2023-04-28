@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-05-27 13:39:04
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2023-04-28 11:13:11
+ * @LastEditTime: 2023-04-28 11:30:05
  * @Description: timestamp
 -->
 <!-- https://shy-nav.shaohang.xin/nav-icons/timestamp.svg -->
@@ -142,7 +142,6 @@ function handleAddUnixRow() {
 function handleDeleteUnixRow(idx: number) {
   unixList.value.splice(idx, 1)
 }
-
 </script>
 
 <template>
@@ -182,7 +181,7 @@ function handleDeleteUnixRow(idx: number) {
     <div v-for="item, idx in unixList" :key="idx" class="flex mt-5" children:rounded-none>
       <span bg="white/50" dark:bg="white/30" px-16px py-8px>Unix时间戳</span>
       <input v-model="item.timestamp" font-mono>
-      <select px-2 bg="white/50" dark:bg="white/30" @change="(e) => item.base = e.target.value === 's' ? 1000 : 1">
+      <select px-2 bg="white/50" dark:bg="white/30" @change="(e: Event) => item.base = (e.target as HTMLSelectElement).value === 's' ? 1000 : 1">
         <option value="s">
           秒
         </option>
@@ -205,7 +204,7 @@ function handleDeleteUnixRow(idx: number) {
       <input v-model="item.date" font-mono>
       <div h-full w-1 w-0 />
       <input :value="computedDateList[idx]" font-mono>
-      <select px-2 bg="white/50" dark:bg="white/30" @change="(e) => item.base = e.target.value === 's' ? 1000 : 1">
+      <select px-2 bg="white/50" dark:bg="white/30" @change="(e: Event) => item.base = (e.target as HTMLSelectElement).value === 's' ? 1000 : 1">
         <option value="s">
           秒
         </option>

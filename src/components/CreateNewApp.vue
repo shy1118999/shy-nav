@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-27 19:02:08
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-09-30 17:53:43
+ * @LastEditTime: 2023-04-28 11:28:54
  * @Description:
 -->
 <script setup lang="ts">
@@ -22,14 +22,17 @@ async function handleDrop(e: any) {
 
 function handleSubmit() {
   if (inputUrl.value.trim() === '') {
+    // eslint-disable-next-line no-alert
     alert('请输入url')
     return
   }
   if (inputTitle.value.trim() === '') {
+    // eslint-disable-next-line no-alert
     alert('请输入名称')
     return
   }
   if (inputIcon.value.trim() === '') {
+    // eslint-disable-next-line no-alert
     alert('请输入图标')
     return
   }
@@ -67,6 +70,7 @@ onMounted(() => {
 const inputFolderName = ref('')
 function handleSubmitFolder() {
   if (inputFolderName.value.trim() === '') {
+    // eslint-disable-next-line no-alert
     alert('请输入名称')
     return
   }
@@ -123,10 +127,12 @@ const pageIcons = [
 ]
 function handleSubmitPage() {
   if (inputPageName.value.trim() === '') {
+    // eslint-disable-next-line no-alert
     alert('请输入名称')
     return
   }
   if (inputPageIcon.value.trim() === '') {
+    // eslint-disable-next-line no-alert
     alert('请输入图标')
     return
   }
