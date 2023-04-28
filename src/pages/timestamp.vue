@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-05-27 13:39:04
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-09-30 17:55:10
+ * @LastEditTime: 2023-04-28 11:13:11
  * @Description: timestamp
 -->
 <!-- https://shy-nav.shaohang.xin/nav-icons/timestamp.svg -->
@@ -57,12 +57,12 @@ const list = [
   },
 ]
 
-const dateFormat = 'YYYY-MM-DD HH:mm:ss'
+const dateFormat = ref('YYYY-MM-DD HH:mm:ss')
 
 const timeNowTimestamp = ref(new Date().getTime())
 
 const timeNow = computed(() => {
-  return dayjs(timeNowTimestamp.value).format(dateFormat)
+  return dayjs(timeNowTimestamp.value).format(dateFormat.value)
 })
 
 function updateTimeNow() {
@@ -88,26 +88,61 @@ function handleChangeNowType(e: Event) {
   nowBase.value = (e.target as HTMLSelectElement).value === 's' ? 1000 : 1
 }
 
-const unixBase = ref(1000)
-const inputTimestamp = ref('')
-const outputTimestamp = computed(() => {
-  return dayjs(parseInt(inputTimestamp.value) * unixBase.value).format(dateFormat)
-})
-
-function handleChangeUnixType(e: Event) {
-  unixBase.value = (e.target as HTMLSelectElement).value === 's' ? 1000 : 1
+interface DateItem {
+  base: number
+  date: string | undefined
 }
 
-const inputDate = ref('')
-const dateBase = ref(1000)
-const outputDate = computed(() => {
-  if (dateBase.value === 1000)
-    return dayjs(inputDate.value).unix()
-  return dayjs(inputDate.value).valueOf()
+const dateList = ref<DateItem[]>([{
+  base: 1000,
+  date: undefined,
+}, {
+  base: 1000,
+  date: undefined,
+}])
+
+const computedDateList = computed(() => {
+  return dateList.value.map(item => item.date ? (item.base === 1000 ? dayjs(item.date).unix() : dayjs(item.date).valueOf()) : undefined)
 })
-function handleChangeDateType(e: Event) {
-  dateBase.value = (e.target as HTMLSelectElement).value === 's' ? 1000 : 1
+
+function handleAddDateRow() {
+  dateList.value.push({
+    base: 1000,
+    date: undefined,
+  })
 }
+
+function handleDeleteDateRow(idx: number) {
+  dateList.value.splice(idx, 1)
+}
+
+interface UnixItem {
+  base: number
+  timestamp: number | undefined
+}
+const unixList = ref<UnixItem[]>([{
+  base: 1000,
+  timestamp: undefined,
+}, {
+  base: 1000,
+  timestamp: undefined,
+}])
+
+const computedUnixList = computed(() => {
+  return unixList.value.map(item => item.timestamp ? dayjs(item.timestamp * item.base).format(dateFormat.value) : undefined)
+})
+
+function handleAddUnixRow() {
+  unixList.value.push({
+    base: 1000,
+    timestamp: undefined,
+  })
+}
+
+function handleDeleteUnixRow(idx: number) {
+  unixList.value.splice(idx, 1)
+}
+
 </script>
 
 <template>
@@ -115,6 +150,13 @@ function handleChangeDateType(e: Event) {
     <h1 text-2xl text-left>
       Unix时间戳
     </h1>
+    <div class="flex mt-5" children:rounded-none>
+      <span bg="white/50" dark:bg="white/30" px-16px py-8px>时间格式</span>
+      <input v-model="dateFormat" font-mono>
+      <button class="btn" @click="dateFormat = 'YYYY-MM-DD HH:mm:ss'">
+        恢复默认
+      </button>
+    </div>
     <div class="flex mt-5" children:rounded-none>
       <span bg="white/50" dark:bg="white/30" px-16px py-8px>当前时间</span>
       <input :value="(timeNowTimestamp / nowBase).toFixed()" font-mono>
@@ -137,10 +179,10 @@ function handleChangeDateType(e: Event) {
         刷新
       </button>
     </div>
-    <div class="flex mt-5" children:rounded-none>
+    <div v-for="item, idx in unixList" :key="idx" class="flex mt-5" children:rounded-none>
       <span bg="white/50" dark:bg="white/30" px-16px py-8px>Unix时间戳</span>
-      <input v-model="inputTimestamp" font-mono onpaste="setTimeout(timeToDate,1)">
-      <select px-2 bg="white/50" dark:bg="white/30" @change="handleChangeUnixType">
+      <input v-model="item.timestamp" font-mono>
+      <select px-2 bg="white/50" dark:bg="white/30" @change="(e) => item.base = e.target.value === 's' ? 1000 : 1">
         <option value="s">
           秒
         </option>
@@ -148,14 +190,22 @@ function handleChangeDateType(e: Event) {
           毫秒
         </option>
       </select>
-      <input v-model="outputTimestamp">
+      <input :value="computedUnixList[idx]">
+      <button class="btn" @click="handleDeleteUnixRow(idx)">
+        删除本行
+      </button>
     </div>
     <div class="flex mt-5" children:rounded-none>
+      <button class="btn" @click="handleAddUnixRow">
+        增加一行
+      </button>
+    </div>
+    <div v-for="item, idx in dateList" :key="idx" class="flex mt-5" children:rounded-none>
       <span bg="white/50" dark:bg="white/30" px-16px py-8px>北京时间</span>
-      <input v-model="inputDate" font-mono>
+      <input v-model="item.date" font-mono>
       <div h-full w-1 w-0 />
-      <input v-model="outputDate" font-mono>
-      <select px-2 bg="white/50" dark:bg="white/30" @change="handleChangeDateType">
+      <input :value="computedDateList[idx]" font-mono>
+      <select px-2 bg="white/50" dark:bg="white/30" @change="(e) => item.base = e.target.value === 's' ? 1000 : 1">
         <option value="s">
           秒
         </option>
@@ -163,6 +213,14 @@ function handleChangeDateType(e: Event) {
           毫秒
         </option>
       </select>
+      <button class="btn" @click="handleDeleteDateRow(idx)">
+        删除本行
+      </button>
+    </div>
+    <div class="flex mt-5" children:rounded-none>
+      <button class="btn" @click="handleAddDateRow">
+        增加一行
+      </button>
     </div>
     <h3 class="mt-5" text-left>
       在编程语言中获取Unix时间戳：
