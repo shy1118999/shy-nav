@@ -2,11 +2,11 @@
  * @Author: shaohang-shy
  * @Date: 2023-01-26 10:49:58
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2023-01-26 10:55:10
+ * @LastEditTime: 2023-05-04 15:46:16
  * @Description: HtmlSpecial
 -->
 <script setup lang="ts">
-
+useTitle('HtmlSpecial')
 </script>
 
 <template>

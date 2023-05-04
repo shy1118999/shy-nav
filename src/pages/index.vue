@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-16 22:21:36
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-10-01 20:08:02
+ * @LastEditTime: 2023-05-04 15:44:26
  * @Description:index
 -->
 <script setup lang="ts">
@@ -10,6 +10,9 @@ import apps from '~/storage/apps'
 import appItemSetting from '~/storage/appItemSetting'
 import activeIndex from '~/storage/swiperActiveIndex'
 import AppSentences from '~/components/AppSentences.vue'
+
+useTitle('导航')
+
 const menuRef = ref()
 const showSettingMenu = ref(false)
 const showCreateApp = ref(false)

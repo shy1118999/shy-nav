@@ -2,7 +2,7 @@
  * @Author: shaohang-shy
  * @Date: 2022-05-27 13:39:04
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2023-04-28 11:30:05
+ * @LastEditTime: 2023-05-04 15:43:05
  * @Description: timestamp
 -->
 <!-- https://shy-nav.shaohang.xin/nav-icons/timestamp.svg -->
@@ -56,6 +56,8 @@ const list = [
     millisecond: '[[NSDate date] timeIntervalSince1970] * 1000',
   },
 ]
+
+useTitle('Unix时间戳')
 
 const dateFormat = ref('YYYY-MM-DD HH:mm:ss')
 
