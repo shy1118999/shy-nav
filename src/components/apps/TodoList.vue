@@ -2,11 +2,12 @@
  * @Author: shaohang-shy
  * @Date: 2022-07-22 16:45:36
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-09-30 17:55:16
+ * @LastEditTime: 2023-05-06 09:59:43
  * @Description: TodoList
 -->
 <script setup lang="ts">
 import { v4 as uuid } from 'uuid'
+import dayjs from 'dayjs'
 import list from '~/storage/todoList'
 import todoTypes from '~/storage/todoType'
 
@@ -71,7 +72,8 @@ function handleAddTodo() {
     title,
     type,
     checked: false,
-    date: new Date(),
+    date: dayjs().format('YYYY-MM-DD'),
+    createTime: new Date().getTime(),
   })
   todoTitle.value = ''
 }
@@ -79,6 +81,13 @@ function handleAddTodo() {
 function handleDeleteTodo(id: string) {
   list.value = list.value.filter(item => item.id !== id)
 }
+
+// 将List按照添加时间排序
+const sortedList = computed(() => {
+  return list.value.sort((a, b) => {
+    return b.createTime - a.createTime
+  })
+})
 </script>
 
 <template>
@@ -96,7 +105,7 @@ function handleDeleteTodo(id: string) {
       <hr color="gray/50" dark:color="white/50">
       <div m-2>
         <div
-          v-for="todo in list.filter(x => !x.checked).slice(0, 5)" :key="todo.id" text-left px-2 truncate dark:before="bg-white/70"
+          v-for="todo in sortedList.filter(x => !x.checked).slice(0, 5)" :key="todo.id" text-left px-2 truncate dark:before="bg-white/70"
           before-bg-gray class="todo-item"
         >
           {{ todo.title }}
@@ -137,7 +146,7 @@ function handleDeleteTodo(id: string) {
               </div>
               <div flex-1 m-5 overflow-auto pb-50px>
                 <div
-                  v-for="item in activeType !== '0' ? list.filter(x => x.type === activeType) : list" :key="item.id"
+                  v-for="item in activeType !== '0' ? sortedList.filter(x => x.type === activeType) : sortedList" :key="item.id"
                   flex w-full bg="white/40" dark:bg="gray/50" my-2 h-60px rounded-md items-start p-2
                   class="todo-item"
                 >
