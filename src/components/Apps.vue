@@ -2,13 +2,13 @@
  * @Author: shaohang-shy
  * @Date: 2022-03-20 14:31:34
  * @LastEditors: shaohang-shy
- * @LastEditTime: 2022-10-01 19:59:40
+ * @LastEditTime: 2023-08-15 10:38:43
  * @Description: Apps
 -->
 <script lang="ts" setup>
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import type { Swiper as SwiperController } from 'swiper'
-import { Keyboard, Mousewheel, Pagination } from 'swiper'
+import { Keyboard, Mousewheel, Pagination } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import draggable from 'vuedraggable'
