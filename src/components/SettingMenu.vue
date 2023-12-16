@@ -9,6 +9,7 @@
 import appItemSetting from '~/storage/appItemSetting'
 import background from '~/storage/background'
 import backgroundHistory from '~/storage/backgroundHistory'
+
 const bgType = ref(background.value.type)
 const bgSrc = ref(background.value.src)
 const bgColor = ref(background.value.backgroundColor)
@@ -62,8 +63,7 @@ function handleExportSetting() {
   for (let i = 0; i < localStorage.length; i++) {
     // 获取key 索引从0开始
     const key = localStorage.key(i)
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
+    // @ts-expect-error xxx
     setting[key] = localStorage.getItem(key)
   }
   const data = JSON.stringify(setting)

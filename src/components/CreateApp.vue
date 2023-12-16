@@ -7,6 +7,7 @@
 -->
 <script setup lang="ts">
 import allApps from '~/config/apps'
+
 const emit = defineEmits(['close'])
 const apps = ref([...allApps])
 function noop(e: MouseEvent) {

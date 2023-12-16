@@ -8,12 +8,12 @@
 import CALENDAR from '~/utils/calendar'
 
 class Calendar {
-  date: { fullDate: string; year: number; month: string | number; date: string | number; day: number }
+  date: { fullDate: string, year: number, month: string | number, date: string | number, day: number }
   selected: any
   startDate: any
   endDate: any
   range: any
-  multipleStatus: { before: string; after: string; data: any[] }
+  multipleStatus: { before: string, after: string, data: any[] }
   weeks: any
   canlender: any
   constructor({ date, selected, startDate, endDate, range }: any = {}) {
@@ -83,7 +83,7 @@ class Calendar {
    * 获取上月剩余天数
    */
 
-  _getLastMonthDays(firstDay: number, full: { fullDate?: string; year: any; month: any; date?: string | number; day?: number }) {
+  _getLastMonthDays(firstDay: number, full: { fullDate?: string, year: any, month: any, date?: string | number, day?: number }) {
     const dateArr = []
     for (let i = firstDay; i > 0; i--) {
       const beforeDate = new Date(full.year, full.month - 1, -i + 1).getDate()
@@ -101,7 +101,7 @@ class Calendar {
    * 获取本月天数
    */
 
-  _currentMonthDys(dateData: number, full: { fullDate?: string; year: any; month: any; date?: string | number; day?: number }) {
+  _currentMonthDys(dateData: number, full: { fullDate?: string, year: any, month: any, date?: string | number, day?: number }) {
     const dateArr = []
     const { fullDate } = this.date
     for (let i = 1; i <= dateData; i++) {
@@ -174,7 +174,7 @@ class Calendar {
    * 获取下月天数
    */
 
-  _getNextMonthDays(surplus: number, full: { fullDate?: string; year: any; month: any; date?: string | number; day?: number }) {
+  _getNextMonthDays(surplus: number, full: { fullDate?: string, year: any, month: any, date?: string | number, day?: number }) {
     const dateArr = []
     for (let i = 1; i < surplus + 1; i++) {
       dateArr.push({
@@ -189,7 +189,7 @@ class Calendar {
 
   /**
    * 设置日期
-   * @param {Object} date
+   * @param {object} date
    */
   setDate(date: any) {
     this._getWeek(date)
@@ -197,7 +197,7 @@ class Calendar {
 
   /**
    * 获取当前日期详情
-   * @param {Object} date
+   * @param {object} date
    */
   getInfo(date: string | Date) {
     if (!date)
@@ -241,17 +241,17 @@ class Calendar {
 
   /**
    * 获取日期范围内所有日期
-   * @param {Object} begin
-   * @param {Object} end
+   * @param {object} begin
+   * @param {object} end
    */
   geDateAll(begin: string, end: string) {
     const arr = []
     const ab = begin.split('-')
     const ae = end.split('-')
     const db = new Date()
-    db.setFullYear(parseInt(ab[0]), parseInt(ab[1]) - 1, parseInt(ab[2]))
+    db.setFullYear(Number.parseInt(ab[0]), Number.parseInt(ab[1]) - 1, Number.parseInt(ab[2]))
     const de = new Date()
-    de.setFullYear(parseInt(ae[0]), parseInt(ae[1]) - 1, parseInt(ae[2]))
+    de.setFullYear(Number.parseInt(ae[0]), Number.parseInt(ae[1]) - 1, Number.parseInt(ae[2]))
     const unixDb = db.getTime() - 24 * 60 * 60 * 1000
     const unixDe = de.getTime() - 24 * 60 * 60 * 1000
     for (let k = unixDb; k <= unixDe;) {
@@ -314,12 +314,12 @@ class Calendar {
 
   /**
    * 获取每周数据
-   * @param {Object} dateData
+   * @param {object} dateData
    */
   _getWeek(dateData: string | Date) {
     const { year, month } = this.getDate(dateData)
-    const firstDay = new Date(year, parseInt(`${month}`) - 1, 1).getDay()
-    const currentDay = new Date(year, parseInt(`${month}`), 0).getDate()
+    const firstDay = new Date(year, Number.parseInt(`${month}`) - 1, 1).getDay()
+    const currentDay = new Date(year, Number.parseInt(`${month}`), 0).getDate()
     const dates = {
       lastMonthDays: this._getLastMonthDays(firstDay, this.getDate(dateData)), // 上个月末尾几天
       currentMonthDys: this._currentMonthDys(
@@ -346,9 +346,9 @@ class Calendar {
     // 拼接数组  上个月开始几天 + 本月天数+ 下个月开始几天
     for (let i = 0; i < canlender.length; i++) {
       if (i % 7 === 0)
-        weeks[parseInt(`${i / 7}`)] = new Array(7)
+        weeks[Number.parseInt(`${i / 7}`)] = Array.from({ length: 7 })
 
-      weeks[parseInt(`${i / 7}`)][i % 7] = canlender[i]
+      weeks[Number.parseInt(`${i / 7}`)][i % 7] = canlender[i]
     }
     this.canlender = canlender
     this.weeks = weeks

@@ -17,6 +17,7 @@ import AppItemIcon from './components/apps/AppItemIcon.vue'
 import AppFolder from './components/apps/AppFolder.vue'
 import Calendar from './components/apps/Calendar.vue'
 import TodoList from './components/apps/TodoList.vue'
+
 const app = createApp(App)
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),

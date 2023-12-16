@@ -167,7 +167,7 @@ const calendar = {
     0x1B255,
     0x06D20,
     0x0ADA0, // 2040-2049
-    /** Add By JJonline@JJonline.Cn**/
+    /** Add By JJonline@JJonline.Cn */
     0x14B63,
     0x09370,
     0x049F8,
@@ -780,12 +780,12 @@ const calendar = {
 
     const _table = this.sTermInfo[y - 1900]
     const _info = [
-      parseInt(`0x${_table.substr(0, 5)}`).toString(),
-      parseInt(`0x${_table.substr(5, 5)}`).toString(),
-      parseInt(`0x${_table.substr(10, 5)}`).toString(),
-      parseInt(`0x${_table.substr(15, 5)}`).toString(),
-      parseInt(`0x${_table.substr(20, 5)}`).toString(),
-      parseInt(`0x${_table.substr(25, 5)}`).toString(),
+      Number.parseInt(`0x${_table.substr(0, 5)}`).toString(),
+      Number.parseInt(`0x${_table.substr(5, 5)}`).toString(),
+      Number.parseInt(`0x${_table.substr(10, 5)}`).toString(),
+      Number.parseInt(`0x${_table.substr(15, 5)}`).toString(),
+      Number.parseInt(`0x${_table.substr(20, 5)}`).toString(),
+      Number.parseInt(`0x${_table.substr(25, 5)}`).toString(),
     ]
     const _calcDay = [
       _info[0].substr(0, 1),
@@ -818,7 +818,7 @@ const calendar = {
       _info[5].substr(3, 1),
       _info[5].substr(4, 2),
     ]
-    return parseInt(_calcDay[n - 1])
+    return Number.parseInt(_calcDay[n - 1])
   },
 
   /**
@@ -883,9 +883,9 @@ const calendar = {
    * @eg:console.log(calendar.solar2lunar(1987,11,01));
    */
   solar2lunar(yPara: number | string, mPara: number | string, dPara: number | string) {
-    let y = parseInt(`${yPara}`)
-    let m = parseInt(`${mPara}`)
-    let d = parseInt(`${dPara}`)
+    let y = Number.parseInt(`${yPara}`)
+    let m = Number.parseInt(`${mPara}`)
+    let d = Number.parseInt(`${dPara}`)
     // 年份限定、上限
     if (y < 1900 || y > 2100)
       return -1 // undefined转换为数字变为NaN
@@ -910,7 +910,7 @@ const calendar = {
     d = objDate.getDate()
     let offset
       = (Date.UTC(objDate.getFullYear(), objDate.getMonth(), objDate.getDate())
-        - Date.UTC(1900, 0, 31))
+      - Date.UTC(1900, 0, 31))
       / 86400000
     for (i = 1900; i < 2101 && offset > 0; i++) {
       temp = this.lYearDays(i)
@@ -1058,9 +1058,9 @@ const calendar = {
    * @eg:console.log(calendar.lunar2solar(1987,9,10));
    */
   lunar2solar(y: number | string, m: number | string, d: number | string, isLeapMonth: boolean) {
-    y = parseInt(`${y}`)
-    m = parseInt(`${m}`)
-    d = parseInt(`${d}`)
+    y = Number.parseInt(`${y}`)
+    m = Number.parseInt(`${m}`)
+    d = Number.parseInt(`${d}`)
     isLeapMonth = !!isLeapMonth
     const leapMonth = this.leapMonth(y)
     if (isLeapMonth && leapMonth !== m)

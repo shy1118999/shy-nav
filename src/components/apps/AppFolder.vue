@@ -8,6 +8,7 @@
 <script setup lang="ts">
 import draggable from 'vuedraggable'
 import apps from '~/storage/apps'
+
 interface Props {
   id: string | number
   row: number

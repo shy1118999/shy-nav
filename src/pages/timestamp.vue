@@ -8,6 +8,7 @@
 <!-- https://shy-nav.shaohang.xin/nav-icons/timestamp.svg -->
 <script setup lang="ts">
 import dayjs from 'dayjs'
+
 // 在编程语言中获取Unix时间戳：
 const list = [
   {
@@ -71,7 +72,7 @@ function updateTimeNow() {
   timeNowTimestamp.value = (new Date()).getTime()
 }
 
-let handle: NodeJS.Timer | null = setInterval(updateTimeNow, 100)
+let handle: NodeJS.Timeout | null = setInterval(updateTimeNow, 100)
 function handleStart() {
   if (!handle)
     handle = setInterval(updateTimeNow, 100)

@@ -7,7 +7,10 @@
 -->
 <script setup lang="ts">
 import { useTippy } from 'vue-tippy'
-import 'tippy.js/dist/tippy.css' // optional for styling
+
+import 'tippy.js/dist/tippy.css'
+
+// optional for styling
 
 const sentence = ref('点击复制，右键切换。')
 const from = ref('')

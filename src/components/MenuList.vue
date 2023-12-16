@@ -63,7 +63,7 @@ const menus: any = {
   ],
 }
 
-function handleClick(e: MouseEvent) {
+function handleClick(_e: MouseEvent) {
   if (timer) {
     clearTimeout(timer)
     timer = null

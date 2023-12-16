@@ -8,11 +8,12 @@
 <script lang="ts" setup>
 import searchEngine from '~/storage/searchEngine'
 import currentSearchEngine from '~/storage/currentSearchEngine'
+
 const searchValue = ref('')
 const searchInput = ref<HTMLInputElement>()
 const showMoreSearchEngine = ref(false)
 
-function handleClick(e: MouseEvent) {
+function handleClick(_e: MouseEvent) {
   showMoreSearchEngine.value = false
 }
 watchEffect(() => {

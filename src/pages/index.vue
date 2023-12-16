@@ -32,7 +32,7 @@ window.oncontextmenu = (e: MouseEvent) => {
   menuRef.value.open(e.pageX, e.pageY, data)
 }
 
-function handleMenuClick(x: { type: string; data: DOMStringMap }) {
+function handleMenuClick(x: { type: string, data: DOMStringMap }) {
   const { type, data } = x
   switch (type) {
     case 'new-tab-open':
@@ -123,6 +123,7 @@ function handleChangeMode() {
 
 <template>
   <Transition>
+    <!-- eslint-disable-next-line vue/require-toggle-inside-transition -->
     <div data-shy-type="main" select-none w-full h-full flex flex-col transition-all duration-1000 :class="{ 'pt-40': mode === Mode.Simple }">
       <!-- 时间 -->
       <AppDateTime @click-time="handleChangeMode" />

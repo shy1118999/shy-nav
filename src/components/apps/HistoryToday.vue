@@ -7,6 +7,7 @@
 -->
 <script setup lang="ts">
 import axios from 'axios'
+
 const _today = new Date()
 const month = `${_today.getMonth() + 1}`.padStart(2, '0')
 const day = `${_today.getDate()}`.padStart(2, '0')

@@ -11,7 +11,6 @@
 + Calendar app
 + dark/light mode
 
-
 ## USED
 + [Vue.js 3](https://vuejs.org/)
 + [Vite 3](https://vitejs.dev/)
@@ -24,7 +23,6 @@
 + [antfu/vitesse-lite](https://github.com/antfu/vitesse-lite)
 + ...
 > vue.draggable.next：Have bugs, it has not been updated for a long time
-
 
 ## source of inspiration
 

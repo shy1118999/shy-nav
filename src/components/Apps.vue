@@ -17,7 +17,7 @@ import activeIndex from '~/storage/swiperActiveIndex'
 
 const swiperController = ref<SwiperController>()
 
-const handleToPage = (id: number | string) => {
+function handleToPage(id: number | string) {
   swiperController.value?.slideTo(apps.value.findIndex(x => x.id === id) ?? 0, 500)
 }
 
